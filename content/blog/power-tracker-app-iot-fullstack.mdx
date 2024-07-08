@@ -1,0 +1,109 @@
+---
+title: Power Tracker - Fullstack Solar Power Tracking App + ESP8266
+description: Track realtime power by reading realtime consumption and charging power by arduino, fullstack app that tracks daily power data also shows realtime insights.
+date: 2024-03-06
+tags: ["project", "javascript", "App", "react", "IoT", "ESP8266", "arduino", "node js", "fullstack", "coding", "technology", "App"]
+published: true
+author: Ashim Das
+dp: '/admin-dp-small.gif'
+thumbnail: '/images/power-tracker/power-tracker-thumbnail.webp'
+---
+
+
+
+**Tracks realtime power consumption**. It measures voltage and current of energy source using sensors, ESP8266 receives the sensor data. 
+
+The ESP8266 sends the data to backend server via web-socket connection. 
+
+The server keeps track of data and updates the client App in realtime. 
+
+<img src="/images/power-tracker/power-tracker-realtime.webp" alt="PowerTracker-realtime-image" style={{ width: "300px", maxWidth: "100%" }} />
+
+Server also tracks data in daily basis, user can retrieve power history at any time. Max and Min power consumption is shown per day.
+
+<img src="/images/power-tracker/power-tracker-saved-data.webp" alt="PowerTracker-saved-data-image" style={{ width: "300px", maxWidth: "100%" }} />
+
+Addtionally ESP is configured with relay which can be used to switch on-off any load remotely from the client App.
+
+
+## Technologies and hardwares:
+### Frontend
+	- [React](https://react.dev?source=flamer "React")
+	- [Web Socket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API "Web-socket") for realtime communication
+	- [React Context API](https://react.dev/reference/react/useContext "Context API React")
+	- [Apex Chart](https://www.npmjs.com/package/apexcharts "Apex Chart")
+
+### Backend
+	- [Express JS](https://expressjs.com/ "Express JS")
+	- [Web Socket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API "Web socket") 
+	- [JSON](https://www.json.org/json-en.html "JSON") for storing data in file system
+
+### Hardwares
+- [ESP8266](https://robu.in/product/nodemcu-esp8266-v3-lua-ch340-wifi-dev-board/?gad_source=1 "Heading link") development board
+- [Current Sensor](https://robu.in/product/acs712-30a-range-current-sensor-module-hall-sensor/?gad_source=1 "Heading link")
+- [Voltage Sensor](https://robu.in/product/voltage-sensor-module/ "Heading link") 
+- [Multiplexer 4051](https://robu.in/product/cjmcu-4051-74hc4051-8-channel-analog-multiplexerdemultiplexer-sensor-module-breakout-board-arduino/ "Heading link") ESP8266 has 1 analog pin, we have 2 sensors  and hence need 2 anolog inputs. So we used a multiplexer IC
+- [3.3v IC](https://robu.in/product/ld1117v33-3-3v-1-3a-fixed-output-ldo-linear-voltage-regulator-3-pin-to-220-stmicroelectronics/ "Heading link") voltage regulator
+- [Relay](https://robu.in/product/1-channel-isolated-5v-relay-module-opto-coupler-for-arduino-pic-avr-dsp-arm/ "Heading link") to turn on-off appliences online
+- [Battery](https://robu.in/product/lg-inr18650-m26-2600mah-lithium-ion-battery/ "Heading link") 3.7v Li-ion
+- [A Load](https://github.com/pandao/editor.md "Heading link") for demonstrating draining power
+- [Micro USB Cable](https://robu.in/product/50-cm-micro-usb-cable/ "Heading link") to program ESP8266
+- [Solar Panel](https://robu.in/product/18v-20w-36-cell-solar-panel-54-x-46-cm/ "Heading link")
+- [BMS](https://robu.in/product/2s-20a-18650-lithium-battery-protection-board/ "Heading link") to charge battery by solar
+
+### Schematic
+
+<img src="/images/power-tracker/power-tracker-diagram.webp" alt="PowerTracker-diagram-image" style={{ width: '100%' }} />
+## Cloning repository to local 
+```sh
+git clone https://github.com/45h1m/PowerTracker.git
+cd PowerTracker
+```
+Now inside **PowerTracker** folder there are mainly **arduino/PT**, **server** and **client** folder.
+
+## Hardware setup & flashing
+
+> __Note:__ [Arduino IDE](https://www.arduino.cc/en/software "Arduino IDE official") should be installed
+
+Download [source code](https://github.com/45h1m/PowerTracker/blob/main/arduino/PT/PT.ino) for ESP8266 and flash from arduino IDE
+
+## Software setup & installation
+
+> __Prerequisite:__ [Node JS](https://nodejs.org/en/download/package-manager/current) & NPM Installed
+
+
+Open two terminals
+### First terminal commands
+Go to `server` folder: 
+```sh 
+cd server
+```
+Install modules: 
+```sh
+npm i
+```
+Start server: 
+```sh
+npm start
+```
+
+### Second terminal commands:
+Go to `client` folder: 
+```sh 
+cd client
+```
+Install modules: 
+```sh
+npm i
+```
+run react server: 
+```sh
+npm run dev
+```
+> __Note__ Client app should be available on localhost, check terminal for URL
+
+### After getting server and client app ready turn on the hardware
+
+> __Note__ ESP8266 will automatically connected to wifi network. change hotspot name and password to ```SSID``` & ```password```
+
+View [Source Code](https://github.com/45h1m/PowerTracker)

@@ -1,0 +1,32 @@
+---
+title: How Explicit Image Width Affects Page Layout Shift + Best Practices
+description: In the world of web development, ensuring a smooth and stable page layout is crucial for a good user experience. One common issue that disrupts this stability is layout shift, which can be caused by images without explicit dimensions. In this blog post, we'll explore how specifying image width can prevent layout shift and share best practices for handling this.
+date: 2024-03-06
+tags: ["WebDevelopment", "LayoutShift", "ResponsiveDesign", "ImageOptimization", "UserExperience", "WebPerformance", "blog", "technology"]
+published: true
+author: Ashim Das
+dp: '/admin-dp-small.gif'
+thumbnail: '/images/image-width/image-width-thumbnail.webp'
+---
+
+<img src="/images/image-width/image-width-thumbnail.webp" alt="explicit-width-thumbnail" style={{ width: "100%", maxWidth: "100%" }} />
+
+
+In the world of web development, ensuring a smooth and stable page layout is crucial for a good user experience. One common issue that disrupts this stability is layout shift, which can be caused by images without explicit dimensions. In this blog post, we'll explore how specifying image width can prevent layout shift and share best practices for handling this.
+
+## Understanding Layout Shift
+
+Layout shift occurs when visible elements on a webpage move unexpectedly. This can happen due to images, ads, or other content loading asynchronously. These shifts can be frustrating for users and can negatively impact your site's Core Web Vitals, particularly the Cumulative Layout Shift (CLS) metric.
+
+## Why Explicit Image Width Matters
+
+When an image is loaded without predefined dimensions, the browser doesn't reserve space for it in the layout. As a result, when the image finally loads, it can push other elements around, causing a layout shift. By explicitly defining the width and height of images, you inform the browser of the required space, thus preventing such shifts.
+
+## Best Practices for Preventing Layout Shift
+
+### 1. **Specify Image Dimensions**
+
+Always include the `width` and `height` attributes in your `<img>` tags. This helps the browser allocate space for the image before it loads:
+
+```html
+<img src="example.jpg" alt="Example Image" width="600" height="400">

@@ -1,0 +1,85 @@
+---
+title: Fingle - Portable Fingerprint Attendance App + ESP8266
+description: Attendance system, super portable, register, take attendance, keep record, using wireless device that connects to your phone App.
+date: 2024-03-06
+tags: ["javascript", "arduino", "ESP8266", "technology", "project", "fingerprint", "attendance", "react", "c++", "app"]
+published: true
+author: Ashim Das
+dp: "/admin-dp-small.gif"
+thumbnail: "/images/fingle/fingle-thumbnail.webp"
+---
+
+<table>
+    <tbody>
+        <tr>
+            <th>Hardware</th>
+            <th>UI</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="/images/fingle/fingle-hardware.webp" alt="fingle-hardware-image" style={{ width: "100%", borderRadius: "0.5rem" }} />
+            </td>
+            <td>
+                <img src="/images/fingle/fingle-home-screen.webp" alt="fingle-home-screen" style={{ width: "70%", borderRadius: "0.5rem" }} />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+Portable solution for taking attendance. \
+This system contains one `device` that have all hardware parts like: `ESP8266`, `Battery`, `Fingerprint Sensor`, `LEDs` etc. \
+`Fingle` App will be available to admin. The app will communicate to `device` using wifi.
+
+#### Overview
+
+After powering on the **device** it will provide hotspot. The credentials can be changed in code statically. \
+Admin will connect to the hotspot and one notification will be prompted: **Sign in to the network.** \
+After clicking to the notification **Fingle App** will be launched. \
+**The Home Screen**
+
+<img src="/images/fingle/fingle-home-screen.webp" alt="fingle-home-screen" style={{ width: "300px", maxWidth: "100%" }} />
+
+Now one can explore all features. The design is apepaling and also minimal.
+
+**Enroll Screen**
+
+<img src="/images/fingle/fingle-enroll.webp" alt="fingle-enroll" style={{ width: "300px", maxWidth: "100%" }} />
+
+After clicking enroll, attendee will scan finger and all set.
+
+**Take Attendance Screen**
+
+<img src="/images/fingle/fingle-taking-attendance.webp" alt="fingle-taking-attendance" style={{ width: "300px", maxWidth: "100%" }} />
+
+Just by openning **Take Attendance** screen system will be waiting for any enrolled finger. Just scan finger and attendance will be recorded. It's that simple. \
+Details of attendee will be reflected in App.
+
+**History Screen**
+
+<img src="/images/fingle/fingle-history.webp" alt="fingle-history" style={{ width: "300px", maxWidth: "100%" }} />
+
+Admin can perform operations on history or attendee data. eg: `Modify Attendee Details`, `Delete`, `Export`, `Save`, `Clear Attendance Data`.
+
+## Technologies and hardwares:
+
+### Client App
+
+    - [React](https://react.dev?source=flamer "React")
+    - [Web Socket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API "Web-socket") for realtime communication
+    - [React Context API](https://react.dev/reference/react/useContext "Context API React")
+    - [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage "Local storage") for storing data, can be upgraded to any database later
+
+### Hardwares
+
+-   [ESP8266](https://robu.in/product/nodemcu-esp8266-v3-lua-ch340-wifi-dev-board/?gad_source=1 "Micro Controller") development board
+-   [Battery](https://robu.in/product/lg-inr18650-m26-2600mah-lithium-ion-battery/ "Battery") 3.7v Li-ion
+-   [Micro USB Cable](https://robu.in/product/50-cm-micro-usb-cable/ "Usb cable") to program ESP8266
+-   [BMS](https://robu.in/product/2s-20a-18650-lithium-battery-protection-board/ "BMS") to charge battery by solar
+-   [R307](https://www.amazon.in/Fingerprint-Reader-Optical-Attendance-Scanner/dp/B0CQC6Y2T7/ref=sr_1_8?dib=eyJ2IjoiMSJ9.HigXzPP-9mGEwLsm2-FqrEDwqz7OyoIbiEP1FRyfgFtpxne9G9VtuiVoFApyptM7U8mkFaXeFf2ha70Q6kYFHCTIgSAbp9TBjSeh0NwhJ3kH0Cg2RO-FxEMWWDFRau2Lk_VKWNt9XfjgHKXmyZbqZDeC5tuFCQJvy9ylWkN3Aqq-jFm8_w2Ypm0Em26AYnlesLxM3fTGq3XdFgz9BN3C7HqGamS5mWqVcoj0skX0CG93jpfjz4gm6KQfSl6I36ZggZqlGHG1mQuRcWie3LGfWjUQUdI9DKG88FTtdDeD09M.PoUtr8sH4eSIxltS9in4n6qooQ732eynqfiX_ts6Tkc&dib_tag=se&keywords=fingerprint+sensor&qid=1720184091&sr=8-8 "Fingerprint sensor") Fingerprint sensor
+-   [Slide Switch](https://robu.in/product/4mm-spdt-1p2t-slide-switch-pack-of-10/?gad_source=1 "Fingerprint sensor") Fingerprint sensor
+
+### Schematic
+
+<img src="/images/fingle/fingle-schematic.webp" alt="fingle-schematic" style={{ width: "100%", maxWidth: "100%" }} />
+
+For more information [contact us](https://github.com/45h1m)
