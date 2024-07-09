@@ -5,9 +5,9 @@ const page = async () => {
     const {blogs } = await getBlogs();
 
     return (
-        <div className="blog-container flex flex-col gap-4 p-2 prose">
+        <div className="blog-container flex flex-col gap-3 p-2 md:pl-0">
             {
-                <div className="flex flex-col gap-4 pt-4">
+                <div className="flex flex-col gap-3 pt-4">
                     {blogs?.map((blog:any, index) => (
                         <article className="" key={blog.slug}>
                             <PostCard 
