@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getBlog, getBlogs } from "@/_actions/blogActions";
 import PostComment from "@/components/PostComment";
 import CommentCard from "@/components/CommentCard";
+import SessionWrapper from "@/components/SessionWrapper";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -64,17 +65,10 @@ const page = async (props: any) => {
             </div>
             <hr className="my-5" />
             <div className="p-2 pt-0">
-                <PostComment />
-                <div className="flex items-center gap-4 pt-2">
-                    <button
-                        className="bg-red-600 text-white px-4 hover:bg-red-500 py-2 rounded-lg shadow-sm"
-                        title="Sign in to post comment"
-                        aria-label="sign in"
-                    >
-                        Sign In
-                    </button>
-                    <p className="text-slate-500">To post a comment</p>
-                </div>
+                <SessionWrapper>
+                    <PostComment />
+                </SessionWrapper>
+
                 <ul className="pt-6 flex flex-col gap-3">
                     <li>
                         <CommentCard author={"Ashim"} authorDP={""} date="12/12/2030" authenticated={true} owner={true} comment={""} />

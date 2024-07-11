@@ -48,8 +48,8 @@ export default function Search() {
     return (
         <>
             <div className="right flex gap-4 items-center lg:w-full justify-end" onClick={() => setOpen((prev) => !prev)}>
-                <button className="flex items-center rounded-full sm:border-2 py-2 sm:pl-4 sm:pr-2" aria-label="Search Posts">
-                    <span className="text-slate-400 text-sm hidden sm:flex sm:min-w-[8rem]">Search posts</span>
+                <button className="flex items-center rounded-full sm:border-2 dark:border-slate-700 border-slate-200 py-2 sm:pl-4 sm:pr-2" aria-label="Search Posts">
+                    <span className="text-slate-600 dark:text-slate-300 text-sm hidden sm:flex sm:min-w-[8rem]">Search posts</span>
                     <span className="logo">
                         <SearchIcon color="#ff0000" />
                     </span>

@@ -49,7 +49,7 @@ const Footer = () => {
                 <div className="mt-8 grid grid-cols-2 gap-6 md:mt-0 lg:w-3/4 lg:grid-cols-3">
                     <div className="mb-8 lg:mb-0">
                         <p className="mb-6 text-lg font-semibold text-gray-700">Flamer</p>
-                        <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+                        <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-600">
                             <li>hello@flamer.com</li>
                             <li>+91 1234567890</li>
                             <li>Facebook</li>
@@ -59,7 +59,7 @@ const Footer = () => {
                     </div>
                     <div className="mb-8 lg:mb-0">
                         <p className="mb-6 text-lg font-semibold text-gray-700">Developer</p>
-                        <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+                        <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-600">
                             <li>github/45h1m</li>
                             <li>Company History</li>
                             <li>Our Team</li>
@@ -69,7 +69,7 @@ const Footer = () => {
                     </div>
                     <div className="mb-8 lg:mb-0">
                         <p className="mb-6 text-lg font-semibold text-gray-700">Team</p>
-                        <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+                        <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-600">
                             <li>About us</li>
                             <li>Company History</li>
                             <li>Our Team</li>
@@ -86,7 +86,7 @@ const Footer = () => {
                     <span className="text-lg font-bold">Flamer</span>
                 </div>
                 <div className="pt-4 md:pt-0 flex justify-center">
-                    <p className="text-sm font-medium text-gray-500 ">© 2024 Flamer. All rights reserved.</p>
+                    <p className="text-sm font-medium text-gray-600 ">© 2024 Flamer. All rights reserved.</p>
                 </div>
             </div>
         </footer>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import SessionWrapper from "@/components/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className + " bg-slate-100 dark:bg-slate-950"}>
-                <Header />
+                <SessionWrapper>
+                    <Header />
+                </SessionWrapper>
 
                 {children}
 
