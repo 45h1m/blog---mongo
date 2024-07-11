@@ -22,7 +22,6 @@ const Header = () => {
         setDark(document.documentElement.classList.contains("dark"));
     }, []);
 
-    console.log(session);
 
     return (
         <header className="sticky top-0 backdrop-blur-lg z-10 bg-white/80 dark:bg-slate-950/60 shadow-sm">
