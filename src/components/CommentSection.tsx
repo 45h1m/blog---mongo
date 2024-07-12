@@ -13,6 +13,7 @@ const CommentSection = ({ blogID }: any) => {
     const textarea = useRef<HTMLTextAreaElement | null>(null);
     const [comments, setComments] = useState([]);
     const [posting, setPosting] = useState(false);
+    const [fetching, setFetching] = useState(true);
     const { toast } = useToast();
 
     async function postCommentRequest() {
@@ -68,6 +69,8 @@ const CommentSection = ({ blogID }: any) => {
             console.error("Error posting comment: ", error);
             return { error: "failed getting comment" };
         }
+
+        setFetching(false);
     }
 
     useEffect(() => {
@@ -128,7 +131,7 @@ const CommentSection = ({ blogID }: any) => {
                                   />
                               </li>
                           ))
-                        : <p>Be the first to comment 🤩</p>}
+                        : <p>Be the first to comment 🤩</p>} {fetching && <LoaderCircle width={20} className="animate-spin ml-[-2px]" />}
                 </ul>
             </div>
         </>
