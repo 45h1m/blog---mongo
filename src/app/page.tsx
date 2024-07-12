@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export async function generateMetadata(props: any): Promise<Metadata> {
 
     return {
-        title: "Blogs | Flamer",
+        title: "Blogs",
         description: "Tech blogs & projects",
         openGraph: {
             images: [{ url: '/flamer-og.webp'}],

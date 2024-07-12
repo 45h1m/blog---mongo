@@ -60,6 +60,7 @@ export async function postComment({ name, email, dp, content }: Comment, blogID:
 
 
 export async function getComments(blogID: string) {
+    await connectDB();
     
     let blog = null;
     
