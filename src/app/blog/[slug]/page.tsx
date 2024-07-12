@@ -2,9 +2,8 @@ import { compileContent } from "@/components/functions";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getBlog, getBlogs } from "@/_actions/blogActions";
-import PostComment from "@/components/PostComment";
-import CommentCard from "@/components/CommentCard";
 import SessionWrapper from "@/components/SessionWrapper";
+import CommentSection from "@/components/CommentSection";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -48,10 +47,12 @@ const page = async (props: any) => {
 
     let blog: any = null;
     let compiledContent = null;
+    let blogID = "";
 
     try {
         blog = await getBlog(slugInURL);
         compiledContent = await compileContent(blog.content);
+        blogID = blog._id.toString();
     } catch (error) {
         console.log(error);
         notFound();
@@ -64,49 +65,10 @@ const page = async (props: any) => {
                 {compiledContent}
             </div>
             <hr className="my-5" />
-            <div className="p-2 pt-0">
-                <SessionWrapper>
-                    <PostComment />
-                </SessionWrapper>
 
-                <ul className="pt-6 flex flex-col gap-3">
-                    <li>
-                        <CommentCard author={"Ashim"} authorDP={""} date="12/12/2030" authenticated={true} owner={true} comment={""} />
-                    </li>
-                    <li>
-                        <CommentCard
-                            author={"Ashim"}
-                            authorDP={"/admin-dp-small.gif"}
-                            date="12/12/2030"
-                            authenticated={true}
-                            owner={true}
-                            comment={
-                                "Lorem, ipsum dolor sit amet consectetur elit. Consectetur architecto est porro quasi doloremque aut quisquam vero necessitatibus distinctio dignissimos?"
-                            }
-                        />
-                    </li>
-                    <li>
-                        <CommentCard
-                            author={"Bhopender Yogi"}
-                            authorDP={"/admin-dp-small.gif"}
-                            date="12/12/2030"
-                            authenticated={true}
-                            owner={true}
-                            comment={"distinctio dignissimos?"}
-                        />
-                    </li>
-                    <li>
-                        <CommentCard
-                            author={"John Doe"}
-                            authorDP={"/admin-dp-small.gif"}
-                            date="12/12/2030"
-                            authenticated={true}
-                            owner={true}
-                            comment={"Dummy comment, working on serverside 😎"}
-                        />
-                    </li>
-                </ul>
-            </div>
+            <SessionWrapper>
+                <CommentSection blogID={blogID} />
+            </SessionWrapper>
 
             <hr className="md:hidden my-5" />
         </>

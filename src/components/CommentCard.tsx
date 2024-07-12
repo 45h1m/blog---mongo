@@ -18,7 +18,7 @@ const CommentCard = ({ author, authorDP, date, authenticated, owner, comment }: 
             <div className="profile flex justify-start gap-2">
                 <div className="pt-1">
                     
-                    <Image className="antialiased rounded-full ring-1 ring-red-600" width={30} height={30} src={authorDP || "/flamer.png"} alt={"author-" + author || "author" + "-profile-image"} />
+                    <Image className="antialiased rounded-full ring-1" width={30} height={30} src={authorDP || "/flamer.png"} alt={"author-" + author || "author" + "-profile-image"} />
                 </div>
                 <div className="bg-slate-50 dark:bg-slate-800 dark:text-slate-100 p-2 px-3 rounded-lg w-fit shadow-sm max-w-full">
                     <div className="flex justify-between items-center">

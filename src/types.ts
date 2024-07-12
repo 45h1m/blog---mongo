@@ -8,3 +8,10 @@ export type BlogPost = {
     tags: Array<string>,
     slug: string
 }
+
+export type Comment = {
+    name: string,
+    email: string,
+    dp: string,
+    content: string,
+}

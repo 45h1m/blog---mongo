@@ -5,27 +5,46 @@ import { Send } from "lucide-react";
 import { toast } from "./ui/use-toast";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
+import axios from 'axios';
+import { useRef } from "react";
 
-const PostComment = () => {
+const PostComment = ({ blogID }: any) => {
     let session = useSession();
+    const textarea = useRef<HTMLTextAreaElement | null>(null);
+
+    console.log(blogID);
+
+    async function postCommentRequest() {
+        const content = textarea?.current?.value!;
+
+        if(!content) return;
+
+        try {
+            const response = await axios.post("/api/postcomment", { blogID, content });
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error posting comment: ", error);
+        }
+    }
 
     return (
         <>
             {session.status === "authenticated" ? (
                 <div className="bg-slate-50 dark:bg-slate-800 flex items-center p-2 rounded-lg w-full shadow-sm border-2 ">
-                    <Image width={100} height={100} className="mr-2 antialiased rounded-full size-10 self-start" src={session.data.user?.image!} alt="user-profile-picture" />
-                    <TextareaAutosize placeholder="Write comment" className="bg-transparent outline-slate-500 w-full p-2 border-none shadow-none" />
+                    <Image
+                        width={100}
+                        height={100}
+                        className="mr-2 antialiased rounded-full size-10 self-start"
+                        src={session.data.user?.image!}
+                        alt="user-profile-picture"
+                    />
+                    <TextareaAutosize ref={textarea} placeholder="Write comment" className="bg-transparent outline-slate-500 w-full p-2 border-none shadow-none" />
                     <button
                         title="Post a comment"
                         aria-label="Subscribe Newsletter"
                         type="button"
                         className="self-start ml-4 rounded-full bg-red-600 px-3 w-10 aspect-square text-sm font-semibold text-white shadow-sm hover:bg-red-600/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                        onClick={() => {
-                            toast({
-                                title: "Be patient my friend 😦",
-                                description: "Working on it",
-                            });
-                        }}
+                        onClick={postCommentRequest}
                     >
                         <Send width={20} className="ml-[-3px] mb-[-4px]" />
                     </button>

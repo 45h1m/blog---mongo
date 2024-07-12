@@ -1,7 +1,18 @@
 import Image from "next/image";
-import { EllipsisVertical, MoveUpRight } from "lucide-react";
-import CommentCard from "@/components/CommentCard";
-import PostComment from "@/components/PostComment";
+import { MoveUpRight } from "lucide-react";
+import { Metadata } from "next";
+
+export async function generateMetadata(props: any): Promise<Metadata> {
+
+    return {
+        title: "Blogs | Flamer",
+        description: "Tech blogs & projects",
+        openGraph: {
+            images: [{ url: '/flamer-og.webp'}],
+        },
+    };
+}
+
 
 export default async function Home() {
     return (

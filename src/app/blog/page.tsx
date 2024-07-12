@@ -1,5 +1,19 @@
 import { getBlogs } from "@/_actions/blogActions";
 import PostCard from "@/components/PostCard";
+import { Metadata } from "next";
+
+
+export async function generateMetadata(props: any): Promise<Metadata> {
+
+    return {
+        title: "Blogs | Flamer",
+        description: "Tech blogs & projects",
+        openGraph: {
+            images: [{ url: '/flamer-og.webp'}],
+        },
+    };
+}
+
 
 const page = async () => {
     const {blogs } = await getBlogs();
