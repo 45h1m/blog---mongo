@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Span } from "next/dist/trace";
+import Share from "./Share";
 
 interface postCardProps {
     slug: string;
@@ -51,7 +52,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                             <EllipsisVertical />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem>Share</DropdownMenuItem>
+                            <DropdownMenuItem><Share/></DropdownMenuItem>
                             <DropdownMenuItem>Report</DropdownMenuItem>
                             <DropdownMenuItem>Block</DropdownMenuItem>
                         </DropdownMenuContent>

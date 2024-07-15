@@ -10,7 +10,7 @@ import { useToast } from "./ui/use-toast";
 import { isoToIST } from "@/lib/utils";
 
 const CommentSection = ({ blogID }: any) => {
-    let session = useSession();
+    
     const textarea = useRef<HTMLTextAreaElement | null>(null);
     const [comments, setComments] = useState([]);
     const [posting, setPosting] = useState(false);
@@ -98,13 +98,15 @@ const CommentSection = ({ blogID }: any) => {
             return { error: "failed getting comment" };
         }
 
+        
         setFetching(false);
     }
 
+    let session = useSession();
+
     useEffect(() => {
         getComments(blogID);
-        session.update();
-    }, []);
+    }, [session, session.status]);
 
     return (
         <>
