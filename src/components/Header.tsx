@@ -41,7 +41,7 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="flex gap-2 w-full justify-end">
+                <div className="flex gap-2 w-full justify-end items-center">
                     <Search />
 
                     <button className="size-10 flex items-center justify-center" onClick={toggleTheme} aria-label="toggle-theme">

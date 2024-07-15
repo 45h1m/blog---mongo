@@ -7,6 +7,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import Image from "next/image";
 import { LoaderCircle, Send } from "lucide-react";
 import { useToast } from "./ui/use-toast";
+import { isoToIST } from "@/lib/utils";
 
 const CommentSection = ({ blogID }: any) => {
     let session = useSession();
@@ -159,7 +160,7 @@ const CommentSection = ({ blogID }: any) => {
                                     _id={c._id}
                                     author={c.name}
                                     authorDP={c.dp}
-                                    date={c.createdAt.toString()}
+                                    date={isoToIST(c.createdAt)}
                                     authenticated={session.status === "authenticated"}
                                     owner={
                                         session?.data?.user?.image! === c.dp ||

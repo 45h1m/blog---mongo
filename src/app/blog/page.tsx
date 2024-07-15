@@ -1,6 +1,7 @@
 import { getBlogs } from "@/_actions/blogActions";
 import PostCard from "@/components/PostCard";
 import { Metadata } from "next";
+import { isoToIST } from "@/lib/utils";
 
 
 export async function generateMetadata(props: any): Promise<Metadata> {
@@ -28,7 +29,7 @@ const page = async () => {
                             title={blog.title} 
                             description={blog.description} 
                             slug={blog.slug} 
-                            date={blog.createdAt.toString().split("GMT")[0]} 
+                            date={isoToIST(blog.createdAt)} 
                             author={blog.author} 
                             dp={blog.authorDP}
                             thumbnail={blog.thumbnail}
