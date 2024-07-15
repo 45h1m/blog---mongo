@@ -4,15 +4,18 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Image from "next/image";
 
 type CommentCardProps = {
+    _id: string;
     author: string;
     date: string;
     authorDP: string;
     authenticated: Boolean;
     owner: Boolean;
     comment: string;
+    ondelete?: Function;
+    onreport?: Function;
 };
 
-const CommentCard = ({ author, authorDP, date, authenticated, owner, comment }: CommentCardProps) => {
+const CommentCard = ({ _id, author, authorDP, date, authenticated, owner, comment, ondelete, onreport }: CommentCardProps) => {
     return (
         <article>
             <div className="profile flex justify-start gap-2">
@@ -40,8 +43,8 @@ const CommentCard = ({ author, authorDP, date, authenticated, owner, comment }: 
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
                                     {!authenticated && <DropdownMenuItem>Sign In</DropdownMenuItem>}
-                                    {authenticated && <DropdownMenuItem>Report</DropdownMenuItem>}
-                                    {authenticated && owner && <DropdownMenuItem>Delete</DropdownMenuItem>}
+                                    {authenticated && <DropdownMenuItem onClick={() => onreport?.()}>Report</DropdownMenuItem>}
+                                    {authenticated && owner && <DropdownMenuItem onClick={() => ondelete?.(_id)}>Delete</DropdownMenuItem>}
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>

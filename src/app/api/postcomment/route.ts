@@ -1,18 +1,25 @@
 import { getBlogs, postComment } from "@/_actions/blogActions";
-import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+    try {
+        
+        const { blogID, content }: any = await req.json();
+    
+        if (!content || !blogID) return NextResponse.json({ error: "Comment posting failed: Provide text and blogID." });
+    
+        const email = req.headers.get("u-email");
+        const name = req.headers.get("u-name");
+        const dp = req.headers.get("u-dp");
+    
+        const updatedComments = await postComment({ name: name!, email: email!, dp: dp!, content }, blogID);
+    
+        if (updatedComments) return NextResponse.json({ data: "Comment posted" });
+        else return NextResponse.json({ error: "Comment posting failed: " });
 
-    const { blogID, content }: any = await req.json();
 
-    if(!content || !blogID) return NextResponse.json({ error: "Comment posting failed: " })
-
-    const secret = process.env.NEXTAUTH_SECRET;
-    const token = await getToken({ req, secret });
-
-    const updatedComments = await postComment({ name: token?.name!, email: token?.email!, dp: token?.picture!, content }, blogID);
-
-    if (updatedComments) return NextResponse.json({ message: "Comment posted" });
-    else return NextResponse.json({ error: "Comment posting failed: " });
+    } catch (error) {
+        console.log("error posting comment: "+ error);
+        return NextResponse.json({ error: "Comment posting failed." });
+    }
 }

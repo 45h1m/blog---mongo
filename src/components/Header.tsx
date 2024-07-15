@@ -63,7 +63,7 @@ const Header = () => {
                                         />
                                     </div>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
+                                <DropdownMenuContent align="end" className="p-2 drop-shadow-sm">
                                     <DropdownMenuItem>
                                         <button
                                             className="bg-red-600 text-white px-4 font-semibold hover:bg-red-500 py-2 rounded-lg shadow-sm text-nowrap"

@@ -1,22 +1,30 @@
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export async function middleware(req: NextRequest) {
-    
-    const path = req.nextUrl.pathname;
-    
-    const secret = process.env.NEXTAUTH_SECRET;
-    const token = await getToken({ req, secret });
-    
-    if (token) 
-        return NextResponse.next();
+    try {
+
+        const secret = process.env.NEXTAUTH_SECRET;
+        const token = await getToken({ req, secret });
+
+        if (token) {
+            const res = NextResponse.next();
+            res.headers.set("u-name", token.name!);
+            res.headers.set("u-email", token.email!);
+            res.headers.set("u-dp", token.picture!);
+
+            return res;
+        }
+
+        return NextResponse.json({ error: "Unauthorized" });
         
-        
-    return NextResponse.json({ error: "Unauthorized" });
+    } catch (error) {
+        console.log("Error in middleware: " + error);
+        return NextResponse.json({ error: "Unauthorized !!" });
+    }
 }
 
 export const config = {
-    matcher: ["/api/postcomment"],
+    matcher: ["/api/postcomment", "/api/deletecomment"],
 };
