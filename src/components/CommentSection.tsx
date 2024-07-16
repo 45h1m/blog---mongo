@@ -103,11 +103,13 @@ const CommentSection = ({ blogID }: any) => {
     }
 
     let session = useSession();
-
+    
     useEffect(() => {
+        
         getComments(blogID);
-    }, [session, session.status]);
 
+    }, [session, session.status]);
+    
     return (
         <>
             {session.status === "authenticated" ? (

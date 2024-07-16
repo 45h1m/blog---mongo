@@ -2,7 +2,6 @@ import { compileContent } from "@/components/functions";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getBlog, getBlogs } from "@/_actions/blogActions";
-import SessionWrapper from "@/components/SessionWrapper";
 import CommentSection from "@/components/CommentSection";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
@@ -65,10 +64,8 @@ const page = async (props: any) => {
                 {compiledContent}
             </div>
             <hr className="my-5" />
-
-            <SessionWrapper>
                 <CommentSection blogID={blogID} />
-            </SessionWrapper>
+
 
             <hr className="md:hidden my-5" />
         </>

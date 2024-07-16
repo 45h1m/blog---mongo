@@ -25,15 +25,15 @@ export default function RootLayout({
             <body className={inter.className + " bg-slate-100 dark:bg-slate-950"}>
                 <SessionWrapper>
                     <Header />
+
+                    {children}
+
+                    <hr className="mt-20" />
+
+                    <div className="bg-slate-50 dark:bg-slate-900">
+                        <Footer />
+                    </div>
                 </SessionWrapper>
-
-                {children}
-
-                <hr className="mt-20" />
-
-                <div className="bg-slate-50 dark:bg-slate-900">
-                    <Footer />
-                </div>
 
                 <Toaster />
             </body>
