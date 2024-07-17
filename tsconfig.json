@@ -22,6 +22,6 @@
       "@blog/*": ["./content/blog/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/blog/page.mdx", "src/components/functions.tsx", "src/components/Search.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(blogroutes)/blog/page.mdx", "src/components/functions.tsx", "src/components/Search.tsx"],
   "exclude": ["node_modules"]
 }
