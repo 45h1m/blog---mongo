@@ -71,8 +71,8 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                     <Link href={"blog/" + slug} className=" w-full h-full flex relative items-end">
                         
                         <Image
-                            width={300}
-                            height={200}
+                            width={400}
+                            height={400}
                             src={thumbnail}
                             alt="post-thumbnail"
                             className="object-cover w-full h-full lg:max-h-full rounded-lg aspect-video"

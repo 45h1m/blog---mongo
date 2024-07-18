@@ -18,14 +18,15 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 
 export default async function Home() {
 
-    
-    
 
     return (
         <main className="">
             <div className="sm:container">
                 <Stories />
-                <a href="/blog" className="mx-auto flex w-fit items-center gap-2 px-3 py-1 bg-red-500 hover:bg-red-400 rounded-sm text-white font-semibold mt-2">
+                <a
+                    href="/blog"
+                    className="mx-auto flex w-fit items-center gap-2 px-3 py-1 bg-red-500 hover:bg-red-400 rounded-sm text-white font-semibold mt-2"
+                >
                     View Blogs{" "}
                     <span className="pt-1">
                         <MoveUpRight size={18} />
