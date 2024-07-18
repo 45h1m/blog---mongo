@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getBlog, getBlogs } from "@/_actions/blogActions";
 import CommentSection from "@/components/CommentSection";
+import { generateAMPs } from "@/lib/generateStaticHTML";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -36,6 +37,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 }
 
 export async function generateStaticParams(props: any) {
+
+    await generateAMPs();
+
     const { blogs }: any = await getBlogs();
 
     return blogs.map((blog: any) => blog.slug);

@@ -2,6 +2,9 @@ import Image from "next/image";
 import { MoveUpRight } from "lucide-react";
 import { Metadata } from "next";
 import Stories from "@/components/StoriesSection";
+import { postStory } from "@/_actions/storyActions";
+import { StoryType } from "@/types";
+import { generateAMPs } from "@/lib/generateStaticHTML";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     return {
@@ -14,6 +17,10 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 }
 
 export default async function Home() {
+
+    
+    
+
     return (
         <main className="">
             <div className="sm:container">
