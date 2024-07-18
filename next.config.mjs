@@ -15,7 +15,6 @@ const nextConfig = {
       },
     ],
   },
-  // Optionally, add any other Next.js config below
 }
  
 const withMDX = createMDX({

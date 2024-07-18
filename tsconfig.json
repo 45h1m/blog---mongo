@@ -22,6 +22,6 @@
       "@blog/*": ["./content/blog/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(blogroutes)/blog/page.mdx", "src/components/functions.tsx", "src/components/Search.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(blogroutes)/blog/page.mdx", "src/components/functions.tsx", "src/components/Search.tsx", "src/app/(storyroutes)/layout.js", "src/app/(storyroutes)/stories/page.jsx", "src/app/(storyroutes)/layout.js", "src/app/(storyroutes)/stories/_document.js"],
   "exclude": ["node_modules"]
 }
