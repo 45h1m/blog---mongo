@@ -72,6 +72,14 @@ const page = async (props: any) => {
 
             <h4 className="p-4 pt-8 text-lg font-bold">Team ⚡</h4>
             <div className="flex flex-wrap gap-3 p-3 justify-center sm:justify-start md:pl-0">
+            <ProfileCard
+                    name={"Samrat Sarkar"}
+                    designation={"Electronics Engineer"}
+                    dp={"/sam-dp.webp"}
+                    youtube={"https://www.youtube.com/@TechMyo"}
+                    insta={"https://instagram.com/techmyo_official"}
+                    email={"Samratsarkar769@gmail.com"}
+                />
                 <ProfileCard
                     name={"Ashim Das"}
                     designation={"Computer Engineer"}
@@ -81,14 +89,7 @@ const page = async (props: any) => {
                     email={"ady.ashim@gmail.com"}
                     github={"https://github.com/45h1m"}
                 />
-                <ProfileCard
-                    name={"Samrat Sarkar"}
-                    designation={"Electronics Engineer"}
-                    dp={"/sam-dp.webp"}
-                    youtube={"https://www.youtube.com/@TechMyo"}
-                    insta={"https://instagram.com/techmyo_official"}
-                    email={"Samratsarkar769@gmail.com"}
-                />
+                
             </div>
 
             <hr className="md:hidden my-5" />
