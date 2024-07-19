@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getBlog, getBlogs } from "@/_actions/blogActions";
 import CommentSection from "@/components/CommentSection";
 import { generateAMPs } from "@/lib/generateStaticHTML";
+import ProfileCard from "@/components/ProfileCard";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -37,7 +38,6 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 }
 
 export async function generateStaticParams(props: any) {
-
     await generateAMPs();
 
     const { blogs }: any = await getBlogs();
@@ -68,8 +68,28 @@ const page = async (props: any) => {
                 {compiledContent}
             </div>
             <hr className="my-5" />
-                <CommentSection blogID={blogID} />
+            <CommentSection blogID={blogID} />
 
+            <h4 className="p-4 pt-8 text-lg font-bold">Team ⚡</h4>
+            <div className="flex flex-wrap gap-3 p-3 justify-center sm:justify-start md:pl-0">
+                <ProfileCard
+                    name={"Ashim Das"}
+                    designation={"Computer Engineer"}
+                    dp={"/admin-dp-small.gif"}
+                    youtube={"https://www.youtube.com/adymaza"}
+                    insta={"https://instagram.com/i_can_print_hello_world"}
+                    email={"ady.ashim@gmail.com"}
+                    github={"https://github.com/45h1m"}
+                />
+                <ProfileCard
+                    name={"Samrat Sarkar"}
+                    designation={"Electronics Engineer"}
+                    dp={"/sam-dp.webp"}
+                    youtube={"https://www.youtube.com/@TechMyo"}
+                    insta={"https://instagram.com/techmyo_official"}
+                    email={"Samratsarkar769@gmail.com"}
+                />
+            </div>
 
             <hr className="md:hidden my-5" />
         </>

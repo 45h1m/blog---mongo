@@ -62,6 +62,7 @@ export default async function Home() {
     return (
         <main className="">
             <div className="sm:container">
+                
                 <Stories />
                 <a
                     href="/blog"

@@ -7,8 +7,8 @@ const StoriesSection = async () => {
 
     return (
         <>
-            <h3 className="p-4 pt-10">Visual Stories</h3>
-            <div className="flex gap-2 w-full overflow-x-auto p-4 snap-mandatory snap-x">
+            <h3 className="p-4 pt-8 text-lg font-bold">Visual Stories 😲</h3>
+            <div className="flex gap-2 w-full overflow-x-auto sm:overflow-x-clip sm:flex-wrap p-4 snap-mandatory snap-x">
                 {stories? stories.length? stories.map((story: any, index: any) => (
                           <StoryCard
                               key={"story-" + index}
