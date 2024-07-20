@@ -2,13 +2,10 @@
 import "@/app/landing.css";
 import { MoveUpRight } from "lucide-react";
 import { useEffect } from "react";
-import fs from "fs";
-import path from "path";
-import Script from "next/script";
 
 const LandingSection = () => {
     useEffect(() => {
-        let currentActive: any = null;
+        let currentActive: any = document.querySelectorAll(".gallery-img")[0];
         let currentActiveIndex = 0;
 
         const imageChangeLogic = () => {
@@ -68,7 +65,6 @@ const LandingSection = () => {
                     <MoveUpRight size={24} />
                 </span>
             </a>
-            <Script src="/scripts/landingImage.js" strategy="beforeInteractive" />
         </div>
     );
 };
