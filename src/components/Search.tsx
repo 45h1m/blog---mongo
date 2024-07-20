@@ -57,7 +57,7 @@ export default function Search() {
             </div>
 
             <CommandDialog open={open} onOpenChange={setOpen} aria-describedby={"search-bar"}>
-                <DialogTitle className="p-4 font-bold text-slate-400">Flamer</DialogTitle>
+                <DialogTitle className="p-4 font-bold text-slate-400">FireBit</DialogTitle>
                 <CommandInput placeholder="search..." />
                 <CommandList aria-describedby="list-of-all-blogs-and-projects">
                     <CommandEmpty>No results found.</CommandEmpty>

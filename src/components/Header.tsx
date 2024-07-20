@@ -45,7 +45,7 @@ const Header = () => {
                             <div>
                                 <Flame color="#ff0000" />
                             </div>
-                            <h4 className="font-bold text-xl">Flamer</h4>
+                            <h4 className="font-bold text-xl">FireBit</h4>
                         </div>
                     </Link>
 

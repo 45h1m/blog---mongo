@@ -1,10 +1,15 @@
+html.dark:root {
+    --bg-color: #db292980;
+}
+
 .gallery-container {
-    background: rgba(231, 170, 170, 0.5);
-    background: radial-gradient(circle, rgba(234, 194, 194, 0.5) 30%, rgba(0, 212, 255, 0) 70%);
+    background: var(--bg-color);
+    background: radial-gradient(circle, var(--bg-color) 0%, rgba(0, 212, 255, 0) 80%);
+    background-size: 30rem 30rem;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 html.dark .gallery-container {
-    background: rgba(219, 41, 41, 0.5);
-    background: radial-gradient(circle, rgba(219, 41, 41, 0.5) 30%, rgba(0, 212, 255, 0) 70%);
     transition: all 700ms;
     opacity: 0;
 }
@@ -15,6 +20,7 @@ html.loaded .gallery-container {
 }
 
 :root {
+    --bg-color: #e7aaaa80;
     --translate: 10%;
     --slide-duration: 1000ms;
     --slide-easing: cubic-bezier(0.09, 0.77, 0, 1);
