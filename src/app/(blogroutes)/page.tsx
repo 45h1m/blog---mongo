@@ -5,6 +5,7 @@ import Stories from "@/components/StoriesSection";
 import { postStory } from "@/_actions/storyActions";
 import { StoryType } from "@/types";
 import { generateAMPs } from "@/lib/generateStaticHTML";
+import LandingSection from "@/components/LandingSection";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     return {
@@ -61,18 +62,10 @@ export default async function Home() {
 
     return (
         <main className="">
+            <LandingSection/>
             <div className="sm:container">
                 
                 <Stories />
-                <a
-                    href="/blog"
-                    className="mx-auto flex w-fit items-center gap-2 px-3 py-1 bg-red-500 hover:bg-red-400 rounded-sm text-white font-semibold mt-2"
-                >
-                    View Blogs{" "}
-                    <span className="pt-1">
-                        <MoveUpRight size={18} />
-                    </span>
-                </a>
             </div>
         </main>
     );

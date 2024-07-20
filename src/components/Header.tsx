@@ -19,9 +19,22 @@ const Header = () => {
     let session = useSession();
 
     useEffect(() => {
-        setDark(document.documentElement.classList.contains("dark"));
-    }, []);
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        
+        function applyTheme() {
+            if (prefersDarkScheme.matches) {
+                document.documentElement.classList.add("dark");
+                setDark(true);
+            } else {
+                document.documentElement.classList.remove("dark");
+                setDark(false);
+            }
+        }
+        applyTheme();
 
+        const themeListener = prefersDarkScheme.addEventListener("change", applyTheme);
+
+    }, []);
 
     return (
         <header className="sticky top-0 backdrop-blur-lg z-20 bg-white/80 dark:bg-slate-950/60 shadow-sm">
