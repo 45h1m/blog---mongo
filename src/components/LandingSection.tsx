@@ -34,7 +34,7 @@ const LandingSection = () => {
             
             <div className="text-center p-4 flex flex-col justify-end">
                 <h1 className="text-xl pt-10 slide-up opacity-0">
-                    We don't do sh<span className="text-2xl font-bold text-red-600">**</span>
+                    We don&apos;t do sh<span className="text-2xl font-bold text-red-600">**</span>
                 </h1>
                 <h1 className="text-6xl font-bold slide-up-d1 opacity-0">
                     We build<span className="text-red-600">.</span>
