@@ -1,7 +1,11 @@
 import { getComments } from "@/_actions/blogActions";
+import { saveLog } from "@/lib/logger";
+import rateLimited from "@/rateLimiter";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest) {
+
+    saveLog(req);
 
     const { blogID }: any = await req.json();
 

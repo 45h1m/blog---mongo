@@ -1,10 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BlogModel } from "@/schemas/Schema";
+import rateLimited from "@/rateLimiter";
+import { saveLog } from "@/lib/logger";
 
 export async function POST(req:NextRequest) {
 
     try {
+        saveLog(req);
+        
+        const email = req.headers.get("u-email");
+        const name = req.headers.get("u-name");
+        const dp = req.headers.get("u-dp");
 
+
+        if(rateLimited(`${email}-deleteComment`, 1000 * 30)) {
+
+            return NextResponse.json({ error: "Too many request !!" }, {status: 429});
+        }
 
         const body = await req.json();
 
@@ -18,9 +30,6 @@ export async function POST(req:NextRequest) {
         
         if(!comment) return NextResponse.json({error: "Comment not found."});
     
-        const email = req.headers.get("u-email");
-        const name = req.headers.get("u-name");
-        const dp = req.headers.get("u-dp");
     
         if(email === comment.email || email === "ady.ashim@gmail.com") {
     

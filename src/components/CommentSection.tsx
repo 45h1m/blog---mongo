@@ -30,8 +30,8 @@ const CommentSection = ({ blogID }: any) => {
             console.log(response.data);
             if (response.data.error) {
                 toast({
-                    title: "Something went wrong.",
-                    description: "Can't post comments.",
+                    title: "Can't post comment.",
+                    description: response.data.error,
                 });
             } else {
                 toast({
@@ -40,10 +40,10 @@ const CommentSection = ({ blogID }: any) => {
                 });
                 getComments(blogID);
             }
-        } catch (error) {
+        } catch (error:any) {
             toast({
                 title: "Something went wrong.",
-                description: "Can't post comments.",
+                description: "Can't post comment.",
             });
             console.error("Error posting comment: ", error);
         }

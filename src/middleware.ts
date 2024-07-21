@@ -17,14 +17,14 @@ export async function middleware(req: NextRequest) {
             return res;
         }
 
-        return NextResponse.json({ error: "Unauthorized" });
+        return NextResponse.json({ error: "Unauthenticated !!" });
         
     } catch (error) {
         console.log("Error in middleware: " + error);
-        return NextResponse.json({ error: "Unauthorized !!" });
+        return NextResponse.json({ error: "Unauthenticated !!" });
     }
 }
 
 export const config = {
-    matcher: ["/api/postcomment", "/api/deletecomment"],
+    matcher: ["/api/postcomment", "/api/deletecomment", "/api/getlogs"],
 };
