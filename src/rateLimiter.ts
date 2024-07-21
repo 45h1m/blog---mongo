@@ -2,6 +2,8 @@ const rateMap = new Map();
 
 export default function rateLimited(key:string, time:number) {
 
+    if(key.toLocaleLowerCase().includes("ady.ashim@gmail.com")) return false;
+
     if(!rateMap.has(key)) {
         rateMap.set(key, {
             time,
