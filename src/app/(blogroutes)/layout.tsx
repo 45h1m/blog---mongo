@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     },
     description: "Explore tech blogs and innovative projects showcasing the latest in technology and development.",
 };
+
+
 export default function RootLayout({
     children,
 }: Readonly<{

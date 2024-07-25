@@ -1,12 +1,13 @@
 "use client";
 import NavBar from "@/components/NavBar";
-import { EllipsisVertical, Flame, LoaderCircle, Moon, SearchIcon, Sun, WindIcon } from "lucide-react";
+import { EllipsisVertical, Flame, LoaderCircle, Moon, SearchIcon, Sparkle, Sun, WindIcon } from "lucide-react";
 import Link from "next/link";
 import Search from "@/components/Search";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
     const [dark, setDark] = useState(false);
@@ -18,9 +19,11 @@ const Header = () => {
 
     let session = useSession();
 
+    const pathname = usePathname();
+
     useEffect(() => {
         const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-        
+
         function applyTheme() {
             if (prefersDarkScheme.matches) {
                 document.documentElement.classList.add("dark");
@@ -33,7 +36,6 @@ const Header = () => {
         applyTheme();
 
         const themeListener = prefersDarkScheme.addEventListener("change", applyTheme);
-
     }, []);
 
     return (
@@ -55,6 +57,18 @@ const Header = () => {
                 </div>
 
                 <div className="flex gap-2 w-full justify-end items-center">
+                    {session.status === "authenticated" && pathname !== "/create" && (
+                        <a href="/create" aria-label="navigate-to-create-blog" title="Create new">
+                            <button
+                                className="rainbow-animate flex justify-center items-center gap-2 rounded-full md:border-2 dark:border-slate-700 border-slate-200 py-2 md:pr-4 md:pl-3 size-10 md:size-auto"
+                                aria-label="Search Posts"
+                            >
+                                <Sparkle />
+                                <span className="md:block hidden">Create</span>
+                            </button>
+                        </a>
+                    )}
+
                     <Search />
 
                     <button className="size-10 flex items-center justify-center" onClick={toggleTheme} aria-label="toggle-theme">

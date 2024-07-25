@@ -1,10 +1,10 @@
 @layer base {
-  * {
-      @apply border-border;
-  }
-  body {
-      @apply bg-background text-foreground;
-  }
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
 @tailwind base;
@@ -75,7 +75,6 @@
     }
 }
 
-
 html *::-webkit-scrollbar-track {
     background-color: #a9bcce00;
 }
@@ -91,11 +90,9 @@ html *::-webkit-scrollbar-thumb {
 }
 
 .blog-container a {
-    
     color: rgb(20, 161, 237) !important;
 }
 .blog-container a:hover {
-    
     text-decoration: underline;
 }
 
@@ -104,4 +101,44 @@ html *::-webkit-scrollbar-thumb {
     border-radius: 100%;
     right: 0;
     bottom: 0;
+}
+
+@keyframes rainbow-animate {
+    0% {
+        color: rgb(255, 114, 49); /* red */
+        border-color: rgb(255, 114, 49); /* red */
+    }
+    12% {
+        color: rgb(255, 234, 45); /* orange */
+        border-color: rgb(255, 234, 45); /* orange */
+    }
+    25% {
+        color: rgb(45, 255, 118); /* red */
+        border-color: rgb(45, 255, 118); /* red */
+    }
+    38% {
+        color: rgb(42, 255, 227); /* red */
+        border-color: rgb(42, 255, 227); /* red */
+    }
+    47% {
+        color: rgb(160, 194, 255); /* red */
+        border-color: rgb(160, 194, 255); /* red */
+    }
+    65% {
+        color: rgb(201, 170, 255); /* red */
+        border-color: rgb(201, 170, 255); /* red */
+    }
+    78% {
+        color: rgb(255, 42, 173); /* red */
+        border-color: rgb(255, 42, 173); /* red */
+    }
+    100% {
+        color: rgb(255, 42, 42); /* red */
+        border-color: rgb(255, 42, 42); /* red */
+    }
+}
+
+.rainbow-animate {
+    animation: rainbow-animate 10s linear infinite;
+    transition: color 0.5s linear;
 }
