@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "formidable": "^3.5.1",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "lodash.throttle": "^4.1.1",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
+    "@types/formidable": "^3.4.5",
     "@types/lodash.throttle": "^4.1.9",
     "@types/node": "^20",
     "@types/react": "^18",

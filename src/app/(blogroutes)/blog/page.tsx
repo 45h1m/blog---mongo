@@ -19,11 +19,13 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 const page = async () => {
     const {blogs } = await getBlogs();
 
+    const publishedBlogs = blogs?.filter(blog => blog.published);
+
     return (
         <div className="blog-container flex flex-col gap-3 p-2 md:pl-0">
             {
                 <div className="flex flex-col gap-3 pt-4">
-                    {blogs?.map((blog:any, index) => (
+                    {publishedBlogs?.map((blog:any, index) => (
                         <article className="" key={blog.slug}>
                             <PostCard 
                             title={blog.title} 

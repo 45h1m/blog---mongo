@@ -64,7 +64,7 @@ const page = async (props: any) => {
     return (
         <>
             <div className="blog-container flex flex-col gap-4 p-2 sm:px-4 sm:border rounded-lg sm:shadow-sm sm:bg-slate-50 dark:sm:bg-slate-900 py-4 break-words">
-                <h1 className="font-bold text-3xl border-l-4 border-red-600 pl-2">{blog.title}</h1>
+                <h1 className="font-bold text-3xl border-l-4 border-red-600 pl-2 capitalize">{blog.title}</h1>
                 {compiledContent}
             </div>
             <hr className="my-5" />

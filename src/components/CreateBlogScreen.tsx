@@ -8,7 +8,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader } from "@/components/ui/drawer";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import throttle from "lodash.throttle";
-
+import axios from "axios";
+import { LoaderCircle, MoveUpRight } from "lucide-react";
 
 const CreateBlogScreen = () => {
     const [contentValue, setContentValue] = useState("### write your blog using MarkDown");
@@ -19,8 +20,12 @@ const CreateBlogScreen = () => {
     const [imgDrawerOpen, setImgDrawerOpen] = useState(false);
     const [editSectionOpen, setEditSectionOpen] = useState(false);
     const [objectUrls, setObjectUrls] = useState<any>([]);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [uploading, setUploading] = useState(false);
+    const [uploaded, setUploaded] = useState(false);
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [cover, setCover] = useState("");
     let tags: Array<string> = [];
-    let selectedImages: Array<File> = [];
     const mdImgMatcher = /!\[.*?\]\(.*?\)/g;
 
     const onTagsChange = (_tags: any) => {
@@ -28,13 +33,7 @@ const CreateBlogScreen = () => {
     };
 
     const onImageChange = (_images: any) => {
-        selectedImages = [..._images];
-        let _urlNames = selectedImages.map((img) => ({
-            url: URL.createObjectURL(img),
-            imgName: img.name,
-        }));
-        setObjectUrls([..._urlNames]);
-        console.log(selectedImages);
+        setSelectedImages([..._images]);
     };
 
     const throttledEffect = throttle((contentValue: any) => {
@@ -60,6 +59,61 @@ const CreateBlogScreen = () => {
         );
     }, 5000);
 
+    const handleFormSubmit = (e: any) => {
+        e.preventDefault();
+
+        if (!(contentValue && titleValue && descValue && slugValue && selectedImages.length > 0 && cover && tags.length > 2)) {
+            return alert("Fill up all the fields !");
+        }
+
+        setUploading(true);
+
+        const formData = new FormData();
+
+        selectedImages.forEach((file) => {
+            formData.append("files", file);
+        });
+
+        formData.append("title", titleValue);
+        formData.append("slug", slugValue);
+        formData.append("description", descValue);
+
+        tags.forEach((tag) => {
+            formData.append("tag", tag);
+        });
+
+        formData.append("content", contentValue);
+        formData.append("cover", cover);
+
+        axios
+            .post("/api/postblog", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                onUploadProgress: (e) => {
+                    const percentCompleted = Math.round((e.loaded * 100) / e.total!);
+                    setUploadProgress(percentCompleted);
+                },
+            })
+            .then((res) => {
+                console.log(res);
+                if (res.data.success) {
+                    setUploaded(true);
+                }
+
+                if (res.data.error) {
+                    setUploadProgress(0);
+                    setUploading(false);
+                    alert(res.data.error);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setUploading(false);
+                alert(error);
+            });
+    };
+
     useEffect(() => {
         throttledEffect(contentValue);
         return () => {
@@ -67,9 +121,51 @@ const CreateBlogScreen = () => {
         };
     }, [contentValue]);
 
+    useEffect(() => {
+        setCover(`/images/${slugValue}/${selectedImages[0]?.name || ""}`);
+        let _urlNames = selectedImages.map((img) => ({
+            url: URL.createObjectURL(img),
+            imgName: img.name,
+        }));
+        setObjectUrls([..._urlNames]);
+        console.log(objectUrls);
+        console.log(selectedImages);
+    }, [selectedImages]);
+
     return (
         <div className="p-4 relative">
-            <div className="bg-slate-50 dark:bg-slate-900 p-4 border rounded-lg flex flex-col gap-3">
+            {uploading && (
+                <div className="p-5 fixed z-30 top-0 left-0 w-full h-full bg-slate-800/50 backdrop-blur-sm flex justify-center items-center">
+                    <div className="shadow-lg p-4 bg-slate-100 dark:bg-slate-800 flex flex-col gap-2 justify-center items-center rounded-lg h-min">
+                        <h2 className="font-semibold text-lg">{titleValue || "Blog title"}</h2>
+                        <p>
+                            {uploaded ? (
+                                "Blog was uploaded 🎉, Your blog will be published once checked 😎."
+                            ) : (
+                                <span className="flex gap-2">
+                                    <LoaderCircle width={20} className="animate-spin" />
+                                    Your blog is uploading..
+                                </span>
+                            )}
+                        </p>
+                        {uploaded || <h3 className="text-xl">{uploadProgress}%</h3>}
+                        {uploadProgress === 100 && !uploaded && <p>Wait, processing..</p>}
+                        {uploaded && (
+                            <a
+                                href="/blog"
+                                className="text-md shadow-lg flex h-min w-fit items-center gap-2 px-3 py-1 bg-red-600 hover:bg-red-400 rounded-sm text-white font-semibold mt-2"
+                            >
+                                View Blogs{" "}
+                                <span>
+                                    <MoveUpRight size={24} />
+                                </span>
+                            </a>
+                        )}
+                    </div>
+                </div>
+            )}
+
+            <form onSubmit={handleFormSubmit} className="bg-slate-50 dark:bg-slate-900 p-4 border rounded-lg flex flex-col gap-3">
                 <h1 className="text-xl font-bold text-slate-700 dark:text-slate-300">New blog 📝</h1>
 
                 <div className="flex flex-col gap-2">
@@ -77,6 +173,8 @@ const CreateBlogScreen = () => {
                         Title
                     </label>
                     <input
+                        minLength={10}
+                        required
                         value={titleValue}
                         onChange={(e) => setTitleValue(e.target.value)}
                         type="text"
@@ -94,6 +192,8 @@ const CreateBlogScreen = () => {
                         Slug
                     </label>
                     <input
+                        minLength={10}
+                        required
                         onChange={(e) => setSlugValue(e.target.value)}
                         type="text"
                         name="blog-slug-input"
@@ -110,6 +210,8 @@ const CreateBlogScreen = () => {
                         Description
                     </label>
                     <input
+                        minLength={20}
+                        required
                         onChange={(e) => setDescValue(e.target.value)}
                         type="text"
                         name="blog-desc-input"
@@ -125,7 +227,7 @@ const CreateBlogScreen = () => {
                     <label className="text-sm text-slate-600 dark:text-slate-300">Tags</label>
                     <TagsInput callback={onTagsChange} />
                     <label htmlFor="blog-desc-input" className="text-sm text-slate-500">
-                        Maximum 8 tags. Include only necessary tags.
+                        Minimum 3 tags & maximum 8 tags. Include only necessary tags.
                     </label>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -144,7 +246,7 @@ const CreateBlogScreen = () => {
 
                                 {editSectionOpen && (
                                     <button
-                                        className="text-sm text-slate-600 dark:text-slate-300 border px-2 py-1 rounded-md"
+                                        className="text-sm text-slate-100 font-semibold border px-2 py-1 rounded-md bg-red-600"
                                         onClick={() => setEditSectionOpen(false)}
                                     >
                                         Close preview
@@ -152,6 +254,7 @@ const CreateBlogScreen = () => {
                                 )}
                             </div>
                             <TextareaAutosize
+                                required
                                 placeholder="Content"
                                 className="bg-white dark:bg-slate-900 px-3 py-2 rounded-md border-2 text-sm max-h-52"
                                 value={contentValue}
@@ -166,7 +269,7 @@ const CreateBlogScreen = () => {
                                     <label className="text-sm text-slate-600 dark:text-slate-300">Preview</label>
                                 ) : (
                                     <button
-                                        className="text-sm text-slate-600 dark:text-slate-300 border px-2 py-1 rounded-md"
+                                        className="text-sm text-slate-50 font-semibold border px-2 py-1 rounded-md bg-red-600"
                                         onClick={() => setEditSectionOpen(true)}
                                     >
                                         Open Preview + Editor
@@ -222,15 +325,15 @@ const CreateBlogScreen = () => {
                 <div className="flex flex-col gap-2">
                     <label className="text-sm text-slate-600 dark:text-slate-300">We will publish blog after checking.</label>
                     <button
+                        type="submit"
                         className="bg-red-600 text-white px-4 font-semibold hover:bg-red-500 py-2 rounded-lg shadow-sm text-nowrap"
                         title="Sign in to post comment"
                         aria-label="sign in"
-                        onClick={() => alert("Give feedback about this creator screen 🍗")}
                     >
                         Send for approval
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

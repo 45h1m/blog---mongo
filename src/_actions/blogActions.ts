@@ -17,28 +17,33 @@ export async function getBlogs() {
     }
 }
 
-export async function postBlog({ title, description, content, author, authorDP, tags, thumbnail, slug }: BlogPost) {
-    await connectDB();
+export async function postBlog({ title, description, content, author, authorDP, tags, thumbnail, slug, published }: BlogPost) {
+    return new Promise(async (resolve, reject) => {
+        await connectDB();
 
-    const newBlog = new BlogModel({
-        title,
-        description,
-        content,
-        author,
-        authorDP,
-        tags,
-        thumbnail,
-        slug,
-    });
-
-    newBlog
-        .save()
-        .then((blog: any) => {
-            console.log("Blog posted: " + blog.title);
-        })
-        .catch((error: any) => {
-            console.log("Failed posting blog: " + newBlog.title + "\nError: " + error);
+        const newBlog = new BlogModel({
+            title,
+            description,
+            content,
+            author,
+            authorDP,
+            tags,
+            thumbnail,
+            slug,
+            published,
         });
+
+        newBlog
+            .save()
+            .then((blog: any) => {
+                console.log("Blog posted: " + blog.title);
+                resolve("Blog posted successfully");
+            })
+            .catch((error: any) => {
+                console.log("Failed posting blog: " + newBlog.title + "\nError: " + error);
+                reject("Failed posting blog");
+            });
+    });
 }
 
 export async function postComment({ name, email, dp, content }: Comment, blogID: string) {
@@ -58,18 +63,16 @@ export async function postComment({ name, email, dp, content }: Comment, blogID:
     return updatedBlog ? true : false;
 }
 
-
 export async function getComments(blogID: string) {
     await connectDB();
-    
+
     let blog = null;
-    
+
     try {
         blog = await BlogModel.findById(blogID);
 
-        if(blog) return blog.comments;
+        if (blog) return blog.comments;
         else return null;
-        
     } catch (error) {
         console.log(error);
         return null;

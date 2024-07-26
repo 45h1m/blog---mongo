@@ -58,7 +58,7 @@ const LandingSection = () => {
             </div>
             <a
                 href="/blog"
-                className="opacity-0 slide-up-d3 mx-auto mb-32 text-lg shadow-lg flex h-min w-fit items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-400 rounded-lg text-white font-semibold mt-2"
+                className="opacity-0 slide-up-d3 mx-auto mb-32 text-md shadow-lg flex h-min w-fit items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-400 rounded-lg text-white font-semibold mt-2"
             >
                 View Blogs{" "}
                 <span>
