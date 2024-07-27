@@ -30,9 +30,8 @@ const page = async () => {
 
                     <tbody>
                         {blogs?.map((b) => (
-                            <tr className="border-b-2">
+                            <tr key={b.slug} className="border-b-2">
                                 <AllBlogs
-                                    key={b.slug}
                                     title={b.title}
                                     slug={b.slug}
                                     author={b.author}
