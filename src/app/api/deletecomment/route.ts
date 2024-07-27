@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BlogModel } from "@/schemas/Schema";
 import rateLimited from "@/rateLimiter";
-import { saveLog } from "@/lib/logger";
 
 export async function POST(req:NextRequest) {
 
     try {
-        saveLog(req);
         
         const email = req.headers.get("u-email");
         const name = req.headers.get("u-name");

@@ -13,14 +13,15 @@ type CommentCardProps = {
     comment: string;
     ondelete?: Function;
     onreport?: Function;
+    pro?:Boolean
 };
 
-const CommentCard = ({ _id, author, authorDP, date, authenticated, owner, comment, ondelete, onreport }: CommentCardProps) => {
+const CommentCard = ({ _id, author, authorDP, date, authenticated, owner, comment, ondelete, onreport, pro }: CommentCardProps) => {
     return (
         <article>
             <div className="profile flex justify-start gap-2">
-                <div className="pt-1">
-                    
+                <div className="pt-1 relative">
+                    {pro && (<span className="absolute -top-1 -right-3">⭐</span>)}
                     <Image className="antialiased rounded-full ring-1" width={30} height={30} src={authorDP || "/flamer.png"} alt={"author-" + author || "author" + "-profile-image"} />
                 </div>
                 <div className="bg-slate-50 dark:bg-slate-800 dark:text-slate-100 p-2 px-3 rounded-lg w-fit shadow-sm max-w-full">

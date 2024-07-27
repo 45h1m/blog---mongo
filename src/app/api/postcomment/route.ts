@@ -1,11 +1,9 @@
 import { postComment } from "@/_actions/blogActions";
-import { saveLog } from "@/lib/logger";
 import rateLimited from "@/rateLimiter";
 import { NextRequest, NextResponse, } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
-        saveLog(req);
 
         
         const email = req.headers.get("u-email");

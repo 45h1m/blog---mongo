@@ -81,8 +81,8 @@ export async function POST(req: NextRequest) {
             title: title,
             description: desc,
             author: uName!,
-            thumbnail: cover,
-            slug: slug,
+            thumbnail: "/flamer-og.webp",
+            slug: slug.replaceAll(" ", ""),
             authorDP: uDP!,
             content: content,
             tags: tags.map((tag) => tag as string),
@@ -98,6 +98,8 @@ export async function POST(req: NextRequest) {
         if (!blogUploaded) {
             throw new Error("Blog post to DB failed.");
         }
+
+        return NextResponse.json({ success: "Blog posted." });
 
         const uploadDir = path.join(process.cwd(), "public/images/" + slug?.toString().trim());
 

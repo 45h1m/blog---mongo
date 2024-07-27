@@ -4,6 +4,7 @@ import { BlogModel, CommentModel } from "@/schemas/Schema";
 import connectDB from "@/lib/connectDB";
 import { BlogPost, Comment } from "@/types";
 import mongoose from "mongoose";
+import { revalidatePath } from "next/cache";
 
 export async function getBlogs() {
     try {
@@ -77,6 +78,21 @@ export async function getComments(blogID: string) {
         console.log(error);
         return null;
     }
+}
+
+export async function publishBlog(id:string, slug:string) {
+    await connectDB();
+
+    const res = await BlogModel.updateOne({_id: id}, {$set: {published: true}});
+
+    if(res) {
+        revalidatePath("/blog");
+        revalidatePath("/blog/"+ slug);
+        revalidatePath("/heaven");
+        return res;
+    }
+
+    return null;
 }
 
 // export async function addCommentsField() {

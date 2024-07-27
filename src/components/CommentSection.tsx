@@ -102,7 +102,7 @@ const CommentSection = ({ blogID }: any) => {
         setFetching(false);
     }
 
-    let session = useSession();
+    let session:any = useSession();
     
     useEffect(() => {
         
@@ -173,6 +173,7 @@ const CommentSection = ({ blogID }: any) => {
                                     }
                                     comment={c.content}
                                     ondelete={deleteComment}
+                                    pro={session?.data?.role === "pro"}
                                 />
                             </li>
                         ))
