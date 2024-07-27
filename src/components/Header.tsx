@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 const Header = () => {
     const [dark, setDark] = useState(false);
@@ -17,7 +17,7 @@ const Header = () => {
         setDark(document.documentElement.classList.contains("dark"));
     };
 
-    let session = useSession();
+    let session: any = useSession();
 
     const pathname = usePathname();
 
@@ -69,6 +69,11 @@ const Header = () => {
                         </a>
                     )}
 
+                    {session?.data?.role === "admin" && (
+                        <a className="text-lg" href="/heaven">
+                            💀
+                        </a>
+                    )}
                     <Search />
 
                     <button className="size-10 flex items-center justify-center" onClick={toggleTheme} aria-label="toggle-theme">

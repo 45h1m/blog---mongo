@@ -5,6 +5,11 @@ import { getBlog, getBlogs } from "@/_actions/blogActions";
 import CommentSection from "@/components/CommentSection";
 import { generateAMPs } from "@/lib/generateStaticHTML";
 import ProfileCard from "@/components/ProfileCard";
+import { EllipsisVertical } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { isoToIST } from "@/lib/utils";
+import Share from "@/components/Share";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -64,6 +69,39 @@ const page = async (props: any) => {
     return (
         <>
             <div className="blog-container flex flex-col gap-4 p-2 sm:px-4 sm:border rounded-lg sm:shadow-sm sm:bg-slate-50 dark:sm:bg-slate-900 py-4 break-words">
+                <div className="p-3 px-2 flex justify-between items-center">
+                    <div className="left flex gap-3 items-center">
+                        <Avatar>
+                            <AvatarImage src={blog.authorDP} alt={"author-" + blog.author + "-profile-image"} />
+                            <AvatarFallback>{blog.author.slice(0, 2)}</AvatarFallback>
+                        </Avatar>
+
+                        <div>
+                            <p className="font-semibold">{blog.author}</p>
+                            <dl>
+                                <dt className="hidden">Published on</dt>
+                                <dd>
+                                    <p className="text-sm text-slate-500">{isoToIST(blog.createdAt)}</p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div className="right grid">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger aria-label="option-menu">
+                                <EllipsisVertical />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem>
+                                    <Share url={"https://firebit.in/blog/"+blog.slug} title={blog.title} description={blog.description}/>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>Report</DropdownMenuItem>
+                                <DropdownMenuItem>Block</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </div>
                 <h1 className="font-bold text-3xl border-l-4 border-red-600 pl-2 capitalize">{blog.title}</h1>
                 {compiledContent}
             </div>
@@ -72,7 +110,7 @@ const page = async (props: any) => {
 
             <h4 className="p-4 pt-8 text-lg font-bold">Team ⚡</h4>
             <div className="flex flex-wrap gap-3 p-3 justify-center sm:justify-start md:pl-0">
-            <ProfileCard
+                <ProfileCard
                     name={"Samrat Sarkar"}
                     designation={"Electronics Engineer"}
                     dp={"/sam-dp.webp"}
@@ -89,7 +127,6 @@ const page = async (props: any) => {
                     email={"ady.ashim@gmail.com"}
                     github={"https://github.com/45h1m"}
                 />
-                
             </div>
 
             <hr className="md:hidden my-5" />

@@ -52,7 +52,7 @@ export default function Search() {
                     <span className="text-slate-600 dark:text-slate-300 text-sm hidden sm:flex sm:min-w-[8rem]">Search posts</span>
                     <span className="logo">
                         <SearchIcon color="#ff0000" />
-                    </span>
+                    </span> 
                 </button>
             </div>
 

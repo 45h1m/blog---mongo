@@ -1,28 +1,51 @@
 import { getBlogs } from "@/_actions/blogActions";
-import PendingBlog from "@/components/PendingBlog";
+import AllBlogs from "@/components/AllBlogs";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 const page = async () => {
-    const session:any = await getServerSession(authOptions);
+    const session: any = await getServerSession(authOptions);
     if (session?.role !== "admin") {
         redirect("/blog");
     }
 
     const { blogs } = await getBlogs();
 
-    const pendingBlogs = blogs!.filter(blog => blog.published === false);
+    return (
+        <div>
+            {blogs?.length === 0 && <p>No pending blogs 😴</p>}
 
-    return <div>
+            <div className="w-full overflow-x-auto p-4">
+                <table className="min-w-[60rem]">
+                    <thead className="top-10">
+                        <tr>
+                            <th>_id</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Slug</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-        {pendingBlogs.length === 0 && (<p>No pending blogs 😴</p>)}
-
-        {pendingBlogs?.map(b => (
-            <PendingBlog key={b.slug} title={b.title} slug={b.slug} email={b.email} id={b._id.toString()}/>
-        ))}
-
-    </div>;
+                    <tbody>
+                        {blogs?.map((b) => (
+                            <tr className="border-b-2">
+                                <AllBlogs
+                                    key={b.slug}
+                                    title={b.title}
+                                    slug={b.slug}
+                                    author={b.author}
+                                    id={b._id.toString()}
+                                    published={b.published}
+                                />
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 };
 
 export default page;

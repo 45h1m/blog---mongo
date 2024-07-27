@@ -63,7 +63,7 @@ const PreviewBlog = ({ content }: any) => {
 
     return (
         <div>
-            <div className="blog-container max-w-2xl p-3 flex flex-col gap-4 sm:border rounded-lg sm:shadow-sm sm:bg-white dark:sm:bg-slate-900 py-4 break-words">
+            <div className="mt-2 blog-container max-w-2xl p-3 flex flex-col gap-4 sm:border rounded-lg sm:shadow-sm sm:bg-white dark:sm:bg-slate-900 py-4 break-words">
                 {compiledContent && compiledContent}
             </div>
         </div>

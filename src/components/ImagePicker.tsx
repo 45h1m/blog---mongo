@@ -23,7 +23,10 @@ const ImagePicker = ({onImageChange}:any) => {
     },[selectedImages])
 
     return (
-        <div className="bg-white dark:bg-slate-900 p-2 rounded-md border-2 text-sm max-h-96 flex flex-wrap gap-2 items-center">
+        <div className="relative bg-white dark:bg-slate-900 p-2 rounded-md border-2 text-sm max-h-96 flex flex-wrap gap-2 items-center pointer-events-none">
+            <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center backdrop-blur-sm">
+                <p>Image uploading is diabled, working on file storage at backend.</p>
+            </div>
             {selectedImages.map((file, i) => (
                 <div
                     key={"selected-img-" + i}

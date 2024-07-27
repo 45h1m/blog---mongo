@@ -4,7 +4,6 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(req: NextRequest) {
     try {
-
         const secret = process.env.NEXTAUTH_SECRET;
         const token = await getToken({ req, secret });
 
@@ -18,7 +17,6 @@ export async function middleware(req: NextRequest) {
         }
 
         return NextResponse.json({ error: "Unauthenticated !!" });
-        
     } catch (error) {
         console.log("Error in middleware: " + error);
         return NextResponse.json({ error: "Unauthenticated !!" });
@@ -26,5 +24,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/api/postcomment", "/api/deletecomment", "/api/getlogs", "/api/postblog", "/api/approveblog"],
+    matcher: ["/api/postcomment", "/api/deletecomment", "/api/getlogs", "/api/postblog", "/api/approveblog", "/api/deleteblog"],
 };

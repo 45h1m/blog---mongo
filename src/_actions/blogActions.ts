@@ -95,6 +95,20 @@ export async function publishBlog(id:string, slug:string) {
     return null;
 }
 
+export async function deleteBlog(id:string, slug:string) {
+    await connectDB();
+
+    const res = await BlogModel.updateOne({_id: id}, {$set: {published: false}});
+
+    if(res) {
+        revalidatePath("/blog");
+        revalidatePath("/blog/"+ slug);
+        revalidatePath("/heaven");
+        return res;
+    }
+    return null;
+}
+
 // export async function addCommentsField() {
 //     try {
 

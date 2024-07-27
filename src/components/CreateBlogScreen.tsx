@@ -48,7 +48,9 @@ const CreateBlogScreen = () => {
 
                 let img = objectUrls.find((img: any) => img.imgName === imgName);
 
-                img = img ? img : "admin-dp-small.gif";
+                // img = img ? img : "admin-dp-small.gif";
+
+                if(!img) return match;
 
                 console.log(url);
                 console.log(imgName);
@@ -62,7 +64,7 @@ const CreateBlogScreen = () => {
     const handleFormSubmit = (e: any) => {
         e.preventDefault();
 
-        if (!(contentValue && titleValue && descValue && slugValue && selectedImages.length > 0 && cover && tags.length > 2)) {
+        if (!(contentValue && titleValue && descValue && slugValue && selectedImages.length >= 0 && cover && tags.length > 2)) {
             return alert("Fill up all the fields !");
         }
 
@@ -128,8 +130,6 @@ const CreateBlogScreen = () => {
             imgName: img.name,
         }));
         setObjectUrls([..._urlNames]);
-        console.log(objectUrls);
-        console.log(selectedImages);
     }, [selectedImages]);
 
     return (

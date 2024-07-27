@@ -31,8 +31,8 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
             <div className="p-3 flex justify-between items-center">
                 <div className="left flex gap-3 items-center">
                     <Avatar>
-                        <AvatarImage src={dp} alt={"author-"+ author +"-profile-image"}/>
-                        <AvatarFallback>{author.slice(0,2)}</AvatarFallback>
+                        <AvatarImage src={dp} alt={"author-" + author + "-profile-image"} />
+                        <AvatarFallback>{author.slice(0, 2)}</AvatarFallback>
                     </Avatar>
 
                     <div>
@@ -52,7 +52,9 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                             <EllipsisVertical />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem><Share/></DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Share url={"https://firebit.in/blog/" + slug} title={title} description={description} />
+                            </DropdownMenuItem>
                             <DropdownMenuItem>Report</DropdownMenuItem>
                             <DropdownMenuItem>Block</DropdownMenuItem>
                         </DropdownMenuContent>
@@ -61,15 +63,14 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
             </div>
             <div className="lg:grid grid-cols-2">
                 <div className="focus-content p-4 pt-0">
-                <Link className="no-underline" href={"blog/" + slug} title={title}>
-                    <h1 className="text-slate-800 dark:text-slate-200 text-2xl font-bold py-2 hover:no-underline">{title}</h1>
-                    <p className="text-slate-700 dark:text-slate-300 line-clamp-4 py-1">{description} </p>
+                    <Link className="no-underline" href={"blog/" + slug} title={title}>
+                        <h1 className="text-slate-800 dark:text-slate-200 text-2xl font-bold py-2 hover:no-underline capitalize">{title}</h1>
+                        <p className="text-slate-700 dark:text-slate-300 line-clamp-4 py-1">{description} </p>
                         read more
-                </Link>
+                    </Link>
                 </div>
                 <div className="lg:pr-4 lg:pb-4 rounded-lg overflow-hidden">
                     <Link href={"blog/" + slug} className=" w-full h-full flex relative items-end">
-                        
                         <Image
                             width={400}
                             height={400}

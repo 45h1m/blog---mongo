@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
         console.log("Tags:", tags);
         console.log("Files:", files);
 
-        if (!(title && slug && desc && content && cover && tags.length > 2 && files.length > 0)) {
+        if (!(title && slug && desc && content && cover && tags.length > 2 && files.length >= 0)) {
             throw new Error("Not all requied fields are given !!");
         }
 
