@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     description: "Explore tech blogs and innovative projects showcasing the latest in technology and development.",
 };
 
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -24,6 +23,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="dark">
+            <head>
+                <meta name="google-site-verification" content="Ge7fomK8okwU6ayD7aETWSjWAnWCxkZrX7vou_soiCE" />
+            </head>
             <body className={inter.className + " bg-slate-100 dark:bg-slate-950"}>
                 <SessionWrapper>
                     <Header />
