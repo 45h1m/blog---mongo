@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BlogModel } from "@/schemas/Schema";
 import rateLimited from "@/rateLimiter";
+import { revalidatePath } from "next/cache";
+import { NextApiResponse } from "next";
 
-export async function POST(req:NextRequest) {
+export async function POST(req:NextRequest, response:NextApiResponse) {
 
     try {
         
@@ -34,7 +36,9 @@ export async function POST(req:NextRequest) {
     
             const res = await BlogModel.updateOne({_id: body.blogID}, { $pull: { comments: { _id: body.commentID } } });
     
-            if ( res ) return NextResponse.json({data: "Comment deleted."});
+            if ( res ) {
+                return NextResponse.json({data: "Comment deleted."});
+            }
     
             return NextResponse.json({error: "Failed to delete comment."});
         }

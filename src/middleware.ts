@@ -24,5 +24,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/api/postcomment", "/api/deletecomment", "/api/getlogs", "/api/postblog", "/api/approveblog", "/api/deleteblog"],
+    matcher: ["/api/postcomment", "/api/deletecomment", "/api/getlogs", "/api/postblog", "/api/approveblog", "/api/deleteblog", "/api/revalidate"],
 };

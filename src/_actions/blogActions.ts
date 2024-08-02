@@ -48,20 +48,30 @@ export async function postBlog({ title, description, content, author, authorDP, 
 }
 
 export async function postComment({ name, email, dp, content }: Comment, blogID: string) {
-    await connectDB();
+    try {
+        await connectDB();
 
-    const newComment = new CommentModel({
-        name,
-        email,
-        dp,
-        content,
-    });
+        const newComment = new CommentModel({
+            name,
+            email,
+            dp,
+            content,
+        });
 
-    const updatedBlog = await BlogModel.findByIdAndUpdate(blogID, { $push: { comments: newComment } }, { upsert: true, new: true });
+        const updatedBlog = await BlogModel.findByIdAndUpdate(blogID, { $push: { comments: newComment } }, { upsert: true, new: true });
 
-    if (updatedBlog) console.log("Comment posted: ");
+        if (updatedBlog) console.log("Comment posted: ");
 
-    return updatedBlog ? true : false;
+        if (updatedBlog) {
+            revalidatePath("/api/getcomments/"+ blogID);
+            return updatedBlog;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.log("Error posting comment: " + error);
+        return null;
+    }
 }
 
 export async function getComments(blogID: string) {
@@ -75,35 +85,33 @@ export async function getComments(blogID: string) {
         if (blog) return blog.comments;
         else return null;
     } catch (error) {
-        console.log(error);
+        console.log("Error finding comments: " + error);
         return null;
     }
 }
 
-export async function publishBlog(id:string, slug:string) {
+export async function publishBlog(id: string, slug: string) {
     await connectDB();
 
-    const res = await BlogModel.updateOne({_id: id}, {$set: {published: true}});
+    const res = await BlogModel.updateOne({ _id: id }, { $set: { published: true } });
 
-    if(res) {
+    if (res) {
         revalidatePath("/blog");
-        revalidatePath("/blog/"+ slug);
-        revalidatePath("/heaven");
+        revalidatePath("/blog/[slug]", "page");
         return res;
     }
 
     return null;
 }
 
-export async function deleteBlog(id:string, slug:string) {
+export async function deleteBlog(id: string, slug: string) {
     await connectDB();
 
-    const res = await BlogModel.updateOne({_id: id}, {$set: {published: false}});
+    const res = await BlogModel.updateOne({ _id: id }, { $set: { published: false } });
 
-    if(res) {
+    if (res) {
         revalidatePath("/blog");
-        revalidatePath("/blog/"+ slug);
-        revalidatePath("/heaven");
+        revalidatePath("/blog/[slug]", "page");
         return res;
     }
     return null;

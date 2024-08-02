@@ -11,7 +11,7 @@ const AsideLeft = async () => {
         blog.tags.map(tag => { 
             if (tag.toLowerCase() === 'project') return project = true;
         });
-        return project;
+        return project && blog.published;
     });
 
     return (

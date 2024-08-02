@@ -64,7 +64,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
             <div className="lg:grid grid-cols-2">
                 <div className="focus-content p-4 pt-0">
                     <Link className="no-underline" href={"blog/" + slug} title={title}>
-                        <h1 className="text-slate-800 dark:text-slate-200 text-2xl font-bold py-2 hover:no-underline capitalize">{title}</h1>
+                        <h2 className="text-slate-800 dark:text-slate-200 text-2xl font-bold py-2 hover:no-underline capitalize">{title}</h2>
                         <p className="text-slate-700 dark:text-slate-300 line-clamp-4 py-1">{description} </p>
                         read more
                     </Link>

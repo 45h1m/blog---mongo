@@ -1,5 +1,6 @@
 import { postComment } from "@/_actions/blogActions";
 import rateLimited from "@/rateLimiter";
+import { NextApiResponse } from "next";
 import { NextRequest, NextResponse, } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -23,7 +24,10 @@ export async function POST(req: NextRequest) {
     
         const updatedComments = await postComment({ name: name!, email: email!, dp: dp!, content }, blogID);
     
-        if (updatedComments) return NextResponse.json({ data: "Comment posted" });
+        if (updatedComments) {
+            
+            return NextResponse.json({ data: "Comment posted" });
+        }
         else return NextResponse.json({ error: "Comment posting failed: " });
 
 

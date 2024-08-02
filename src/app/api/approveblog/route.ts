@@ -1,7 +1,8 @@
 import { publishBlog } from "@/_actions/blogActions";
+import { NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, response:NextApiResponse) {
     try {
         const email = req.headers.get("u-email");
 
@@ -12,7 +13,10 @@ export async function POST(req: NextRequest) {
         const {id, slug} = await req.json();
         const res = await publishBlog(id, slug);
 
-        if(res) return NextResponse.json({ success: "Blog published: " + slug });
+        if(res) {
+            
+            return NextResponse.json({ success: "Blog published: " + slug });
+        }
         return NextResponse.json({ error: "Couldn't update blog to publish ! " });
 
     } catch (error) {

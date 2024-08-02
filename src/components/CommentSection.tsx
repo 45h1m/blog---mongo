@@ -79,7 +79,7 @@ const CommentSection = ({ blogID }: any) => {
 
     async function getComments(blogID: string) {
         try {
-            const response = await axios.post("/api/getcomments", { blogID });
+            const response = await axios.get("/api/getcomments/"+ blogID);
 
             if (response.data.error) {
                 toast({

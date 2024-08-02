@@ -9,7 +9,8 @@ type BlogMeta = {
 
 export async function GET() {
   const {blogs}: any = await getBlogs();
-  const resp = blogs.map((b: BlogMeta) => ({
+  const publishedBlogs = blogs.filter((blog:any) => blog.published);
+  const resp = publishedBlogs.map((b: BlogMeta) => ({
     title: b.title,
     realSlug: b.slug,
     tags: b.tags

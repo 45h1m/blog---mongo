@@ -47,7 +47,9 @@ export async function generateStaticParams(props: any) {
 
     const { blogs }: any = await getBlogs();
 
-    return blogs.map((blog: any) => blog.slug);
+    const publishedBlogs = blogs.filter((blog:any) => blog.published);
+
+    return publishedBlogs.map((blog: any) => blog.slug);
 }
 
 const page = async (props: any) => {
@@ -59,10 +61,11 @@ const page = async (props: any) => {
 
     try {
         blog = await getBlog(slugInURL);
+        if(!blog.published) return notFound();
         compiledContent = await compileContent(blog.content);
         blogID = blog._id.toString();
     } catch (error) {
-        console.log(error);
+        console.log("Error rendering /blog/[slug]: " + error);
         notFound();
     }
 
