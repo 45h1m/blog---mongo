@@ -82,7 +82,7 @@ const Footer = () => {
                 <div className="flex items-center gap-2 justify-center">
                     <img
                         className="invert -hue-rotate-180 dark:hue-rotate-0 dark:invert-0 w-24"
-                        src={"/firebit-logo.png"}
+                        src={"/firebit.svg"}
                         width={200}
                         height={160}
                         alt="firebit-logo"

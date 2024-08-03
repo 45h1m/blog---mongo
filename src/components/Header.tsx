@@ -45,7 +45,7 @@ const Header = () => {
                     <Link href="/">
                         <div className="flex gap-2">
                             <div className="w-24">
-                                <img className="invert -hue-rotate-180 dark:hue-rotate-0 dark:invert-0" src={"/firebit-logo.png"} width={200} height={160} alt="firebit-logo"/>
+                                <img className="invert -hue-rotate-180 dark:hue-rotate-0 dark:invert-0" src={"/firebit.svg"} width={200} height={160} alt="firebit-logo"/>
                             </div>
                             
                         </div>
