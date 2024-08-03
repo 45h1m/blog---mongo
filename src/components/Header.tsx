@@ -44,10 +44,10 @@ const Header = () => {
                 <div className="flex items-center">
                     <Link href="/">
                         <div className="flex gap-2">
-                            <div>
-                                <Flame color="#ff0000" />
+                            <div className="w-24">
+                                <img className="invert -hue-rotate-180 dark:hue-rotate-0 dark:invert-0" src={"/firebit-logo.png"} width={200} height={160} alt="firebit-logo"/>
                             </div>
-                            <h4 className="font-bold text-xl">FireBit</h4>
+                            
                         </div>
                     </Link>
 
