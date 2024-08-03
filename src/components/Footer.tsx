@@ -48,7 +48,7 @@ const Footer = () => {
                 </div>
                 <div className="mt-8 grid grid-cols-2 gap-6 md:mt-0 lg:w-3/4 lg:grid-cols-3">
                     <div className="mb-8 lg:mb-0">
-                        <p className="mb-6 text-lg font-semibold text-gray-700">Flamer</p>
+                        <p className="mb-6 text-lg font-semibold text-gray-700">FireBit</p>
                         <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-600">
                             <li>hello@flamer.com</li>
                             <li>+91 1234567890</li>
@@ -83,10 +83,10 @@ const Footer = () => {
             <div className="pb-4 mx-auto max-w-6xl items-center justify-between px-4 md:flex lg:px-0">
                 <div className="flex items-center gap-2 justify-center">
                     <Flame color="#ff0000"/>
-                    <span className="text-lg font-bold">Flamer</span>
+                    <span className="text-lg font-bold">FireBit</span>
                 </div>
                 <div className="pt-4 md:pt-0 flex justify-center">
-                    <p className="text-sm font-medium text-gray-600 ">© 2024 Flamer. All rights reserved.</p>
+                    <p className="text-sm font-medium text-gray-600 ">© 2024 FireBit. All rights reserved.</p>
                 </div>
             </div>
         </footer>
