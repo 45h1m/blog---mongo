@@ -8,11 +8,36 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader } from "@/components/ui/drawer";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import throttle from "lodash.throttle";
+import debounce from "lodash/debounce";
 import axios from "axios";
 import { LoaderCircle, MoveUpRight } from "lucide-react";
 
+let lastClicked = new Date().getTime();
+let lastTimeout: any = null;
+
 const CreateBlogScreen = () => {
-    const [contentValue, setContentValue] = useState("### write your blog using MarkDown");
+    const [contentValue, setContentValue] = useState(`## Write your blog using MarkDown
+
+### Put links
+
+-  Some item
+-  another item
+
+> note: **It's easy**
+
+\`highlight\` any text
+
+Write paragraphs *Italic*  **Bold**
+
+Write codes
+\`\`\`sh
+./ashim.das
+\`\`\`
+
+Insert any [Link](https://63b935305c329268d5a8cd41--ashimdas.netlify.app) 
+
+##### Insert images with URL & alt-text
+![alt-text](/flamer-og.webp)`);
     const [processedValue, setProcessedValue] = useState(contentValue);
     const [titleValue, setTitleValue] = useState("");
     const [descValue, setDescValue] = useState("");
@@ -50,7 +75,7 @@ const CreateBlogScreen = () => {
 
                 // img = img ? img : "admin-dp-small.gif";
 
-                if(!img) return match;
+                if (!img) return match;
 
                 console.log(url);
                 console.log(imgName);
@@ -117,10 +142,30 @@ const CreateBlogScreen = () => {
     };
 
     useEffect(() => {
-        throttledEffect(contentValue);
-        return () => {
-            throttledEffect.cancel();
-        };
+        const current = new Date().getTime();
+
+        if (lastTimeout) {
+            clearTimeout(lastTimeout);
+        }
+
+        lastTimeout = setTimeout(
+            () =>
+                setProcessedValue(
+                    contentValue.replaceAll(mdImgMatcher, (match: any) => {
+                        console.log("trigger");
+                        const url = match
+                            .match(/\(.*?\)/)?.[0]
+                            .slice(1)
+                            .replace(")", "");
+                        const imgName = url?.split("/").at(-1);
+                        let img = objectUrls.find((img: any) => img.imgName === imgName);
+                        if (!img) return match;
+                        match = `![${img.imgName}](${img.url})`;
+                        return match;
+                    })
+                ),
+            1000
+        );
     }, [contentValue]);
 
     useEffect(() => {

@@ -47,7 +47,7 @@ export async function generateStaticParams(props: any) {
 
     const { blogs }: any = await getBlogs();
 
-    const publishedBlogs = blogs.filter((blog:any) => blog.published);
+    const publishedBlogs = blogs.filter((blog: any) => blog.published);
 
     return publishedBlogs.map((blog: any) => blog.slug);
 }
@@ -61,7 +61,7 @@ const page = async (props: any) => {
 
     try {
         blog = await getBlog(slugInURL);
-        if(!blog.published) return notFound();
+        if (!blog.published) return notFound();
         compiledContent = await compileContent(blog.content);
         blogID = blog._id.toString();
     } catch (error) {
@@ -97,7 +97,7 @@ const page = async (props: any) => {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuItem>
-                                    <Share url={"https://firebit.in/blog/"+blog.slug} title={blog.title} description={blog.description}/>
+                                    <Share url={"https://firebit.in/blog/" + blog.slug} title={blog.title} description={blog.description} />
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>Report</DropdownMenuItem>
                                 <DropdownMenuItem>Block</DropdownMenuItem>
@@ -111,26 +111,30 @@ const page = async (props: any) => {
             <hr className="my-5" />
             <CommentSection blogID={blogID} />
 
-            <h4 className="p-4 pt-8 text-lg font-bold">Team ⚡</h4>
-            <div className="flex flex-wrap gap-3 p-3 justify-center sm:justify-start md:pl-0">
-                <ProfileCard
-                    name={"Samrat Sarkar"}
-                    designation={"Electronics Engineer"}
-                    dp={"/sam-dp.webp"}
-                    youtube={"https://www.youtube.com/@TechMyo"}
-                    insta={"https://instagram.com/techmyo_official"}
-                    email={"Samratsarkar769@gmail.com"}
-                />
-                <ProfileCard
-                    name={"Ashim Das"}
-                    designation={"Computer Engineer"}
-                    dp={"/admin-dp-small.gif"}
-                    youtube={"https://www.youtube.com/adymaza"}
-                    insta={"https://instagram.com/i_can_print_hello_world"}
-                    email={"ady.ashim@gmail.com"}
-                    github={"https://github.com/45h1m"}
-                />
-            </div>
+            {
+                blog.tags.some((tag:string) => tag.toLowerCase() === "project") && <>
+                    <h4 className="p-4 pt-8 text-lg font-bold">Team ⚡</h4>
+                    <div className="flex flex-wrap gap-3 p-3 justify-center sm:justify-start md:pl-0">
+                        <ProfileCard
+                            name={"Samrat Sarkar"}
+                            designation={"Electronics Engineer"}
+                            dp={"/sam-dp.webp"}
+                            youtube={"https://www.youtube.com/@TechMyo"}
+                            insta={"https://instagram.com/techmyo_official"}
+                            email={"Samratsarkar769@gmail.com"}
+                        />
+                        <ProfileCard
+                            name={"Ashim Das"}
+                            designation={"Computer Engineer"}
+                            dp={"/admin-dp-small.gif"}
+                            youtube={"https://www.youtube.com/adymaza"}
+                            insta={"https://instagram.com/i_can_print_hello_world"}
+                            email={"ady.ashim@gmail.com"}
+                            github={"https://github.com/45h1m"}
+                        />
+                    </div>
+                </>
+            }
 
             <hr className="md:hidden my-5" />
         </>

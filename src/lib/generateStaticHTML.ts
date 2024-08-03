@@ -72,7 +72,7 @@ function generateAmpStoryHtml(story: any) {
         amp-story-page { background-color: #000; }
         p {    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
         h1 { font-weight: bold; font-size: 2.875em; font-weight: normal; line-height: 1.174; text-shadow: 0 0 10px black }
-        p { font-weight: normal; font-size: 1.3em; line-height: 1.5em; color: #fff; text-shadow: 0 0 8px black  }
+        p { font-weight: normal; font-size: 1rem; line-height: 1.5em; color: #fff; text-shadow: 0 0 8px black  }
         q { font-weight: 300; font-size: 1.1em; text-shadow: 0 0 10px black  }
         amp-story-grid-layer.bottom { align-content:end; }
         amp-story-grid-layer.noedge { padding: 0px; }
