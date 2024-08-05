@@ -12,6 +12,8 @@ export async function POST(req:NextRequest, response:NextApiResponse) {
         const name = req.headers.get("u-name");
         const dp = req.headers.get("u-dp");
 
+        if(email !== "ady.ashim@gmail.com") return NextResponse.json({error: "45h1m temporarily restricted deleting comments."});
+
 
         if(rateLimited(`${email}-deleteComment`, 1000 * 30)) {
 

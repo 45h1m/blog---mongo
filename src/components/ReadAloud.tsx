@@ -1,6 +1,6 @@
 "use client";
 
-import { LoaderCircle, Sparkles, Speech } from "lucide-react";
+import { LoaderCircle, Pause, Sparkles, Speech } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 
@@ -106,13 +106,13 @@ const ReadAloud = ({ onclick, children }: any) => {
             <div id="blog-contents" className="flex flex-col gap-3">
                 {content}
             </div>
-            <div className="sticky bottom-0 py-4 pt-6 bg-gradient-to-t from-slate-100 dark:from-slate-950 from-10% to-transparent flex gap-2">
+            <div className="sticky bottom-0 py-4 pt-6 bg-gradient-to-t from-white/50 dark:from-inherit from-10% to-transparent flex gap-2">
                 <button
                     onClick={handleSpeech}
-                    className=" h-min  bg-gradient-to-t from-red-600 to-red-400 px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-red-500/20 text-white flex gap-2 items-center"
+                    className=" h-min  bg-gradient-to-t from-red-600 to-red-400 px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-red-500/50 text-white flex gap-2 items-center"
   
                 >
-                    <Speech size={20} /> {reading ? <LoaderCircle size={18} className="animate-spin" /> : "Read Aloud"}
+                    <Speech size={20} /> {reading ? <Pause size={20} className="animate-pulse" /> : "Read Aloud"}
                 </button>
                 <button
                 onClick={() => {
@@ -121,7 +121,7 @@ const ReadAloud = ({ onclick, children }: any) => {
                         description: "Working on it",
                     });
                 }} 
-                className=" h-min  bg-gradient-to-t from-pink-600 to-violet-400 px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-pink-500/20 text-white flex gap-2">
+                className=" h-min  bg-gradient-to-t from-pink-600 to-violet-400 px-4 py-2 rounded-full text-sm font-semibold shadow-lg shadow-pink-500/50 text-white flex gap-2">
                     <Sparkles size={20} /> AI Summary
                 </button>
             </div>
