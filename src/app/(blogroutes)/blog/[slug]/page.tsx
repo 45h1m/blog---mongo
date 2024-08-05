@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { isoToIST } from "@/lib/utils";
 import Share from "@/components/Share";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import ReadAloud from "@/components/ReadAloud";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -75,7 +76,7 @@ const page = async (props: any) => {
                 <div className="p-3 px-2 flex justify-between items-center">
                     <div className="left flex gap-3 items-center">
                         <Avatar>
-                            <AvatarImage src={blog.authorDP} alt={"author-" + blog.author + "-profile-image"} />
+                            <AvatarImage className="ring" src={blog.authorDP} alt={"author-" + blog.author + "-profile-image"} />
                             <AvatarFallback>{blog.author.slice(0, 2)}</AvatarFallback>
                         </Avatar>
 
@@ -106,7 +107,8 @@ const page = async (props: any) => {
                     </div>
                 </div>
                 <h1 className="font-bold text-3xl border-l-4 border-red-600 pl-2 capitalize">{blog.title}</h1>
-                {compiledContent}
+                {/* {compiledContent} */}
+                <ReadAloud >{<>{compiledContent}</>}</ReadAloud>
             </div>
             <hr className="my-5" />
             <CommentSection blogID={blogID} />

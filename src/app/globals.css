@@ -103,6 +103,16 @@ html *::-webkit-scrollbar-thumb {
     bottom: 0;
 }
 
+.active-speaking-text {
+    background: yellow;
+    
+}
+html.dark .active-speaking-text {
+    background: yellow;
+    color: black;
+    
+}
+
 @keyframes rainbow-animate {
     0% {
         color: rgb(255, 114, 49); /* red */

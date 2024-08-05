@@ -89,7 +89,7 @@ const Footer = () => {
                     />
                 </div>
                 <div className="pt-4 md:pt-0 flex justify-center">
-                    <p className="text-sm font-medium text-gray-600 ">© 2024 FireBit. All rights reserved.</p>
+                    <p className="text-sm font-medium text-gray-600 ">© 2024 FIREBIT. All rights reserved.</p>
                 </div>
             </div>
         </footer>
