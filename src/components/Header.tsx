@@ -42,7 +42,7 @@ const Header = () => {
         <header className="sticky top-0 backdrop-blur-lg z-20 bg-white/80 dark:bg-slate-950/60 shadow-sm">
             <div className="px-3 left flex items-center gap-4 sm:container h-20 sm:h-24 justify-between">
                 <div className="flex items-center">
-                    <Link href="/">
+                    <Link href="/blog">
                         <div className="flex gap-2">
                             <div className="w-24">
                                 <img className="invert -hue-rotate-180 dark:hue-rotate-0 dark:invert-0" src={"/firebit.svg"} width={200} height={160} alt="firebit-logo"/>

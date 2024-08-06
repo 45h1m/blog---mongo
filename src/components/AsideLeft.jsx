@@ -32,7 +32,7 @@ const AsideLeft = async () => {
                 </ul>
                 <a
                     href="/blog"
-                    className="self-start mx-auto mb-32 text-md shadow-lg flex h-min w-fit items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-400 rounded-lg text-white text-sm font-semibold mt-2"
+                    className="self-start mx-auto text-md shadow-lg flex h-min w-fit items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-400 rounded-lg text-white text-sm font-semibold mt-2"
                 >
                     View Blogs{""}
                     <span>

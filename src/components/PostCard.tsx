@@ -30,7 +30,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
         <div className="max-w-2xl bg-slate-50 dark:bg-slate-950/50 sm:dark:bg-slate-900 rounded-lg sm:border shadow-sm overflow-hidden">
             <div className="p-3 flex justify-between items-center">
                 <div className="left flex gap-3 items-center">
-                    <Avatar>
+                    <Avatar className="ring-1">
                         <AvatarImage src={dp} alt={"author-" + author + "-profile-image"} />
                         <AvatarFallback>{author.slice(0, 2)}</AvatarFallback>
                     </Avatar>

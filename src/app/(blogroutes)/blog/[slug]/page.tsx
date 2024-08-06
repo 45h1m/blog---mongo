@@ -75,8 +75,8 @@ const page = async (props: any) => {
             <div className="blog-container flex flex-col gap-4 p-2 sm:px-4 sm:border rounded-lg sm:shadow-sm sm:bg-slate-50 dark:sm:bg-slate-900 py-4 break-words">
                 <div className="p-3 px-2 flex justify-between items-center">
                     <div className="left flex gap-3 items-center">
-                        <Avatar>
-                            <AvatarImage className="ring" src={blog.authorDP} alt={"author-" + blog.author + "-profile-image"} />
+                        <Avatar className="ring-1">
+                            <AvatarImage src={blog.authorDP} alt={"author-" + blog.author + "-profile-image"} />
                             <AvatarFallback>{blog.author.slice(0, 2)}</AvatarFallback>
                         </Avatar>
 
@@ -98,7 +98,7 @@ const page = async (props: any) => {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuItem>
-                                    <Share url={"https://firebit.in/blog/" + blog.slug} title={blog.title} description={blog.description} />
+                                    <Share url={"https://firebit.in/blog/" + blog.slug} title={blog.title + " - FIREBIT"} description={blog.description} />
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>Report</DropdownMenuItem>
                                 <DropdownMenuItem>Block</DropdownMenuItem>

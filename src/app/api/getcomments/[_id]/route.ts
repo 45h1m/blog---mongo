@@ -10,8 +10,6 @@ export async function GET( request: NextRequest,
         const token = await getToken({ req: request, secret });
         const email = token?.email!;
 
-        console.log(email)
-
         if (!params?._id) return NextResponse.json({ error: "Provide blogID." });
         const blogID = params?._id;
 

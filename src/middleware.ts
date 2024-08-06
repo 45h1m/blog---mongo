@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
             const res = NextResponse.next();
             res.headers.set("u-name", token.name!);
             res.headers.set("u-email", token.email!);
-            res.headers.set("u-dp", token.picture!);
+            res.headers.set("u-dp", token.picture || "/firebit.svg");
 
             return res;
         }
