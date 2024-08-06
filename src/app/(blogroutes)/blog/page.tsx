@@ -22,7 +22,7 @@ const page = async () => {
     const publishedBlogs = blogs?.filter(blog => blog.published);
 
     return (
-        <div className="blog-container flex flex-col gap-3 p-2 md:pl-0">
+        <div className="flex flex-col gap-3 md:pl-0 pb-10">
             {
                 <div className="flex flex-col gap-3 pt-4">
                     {publishedBlogs?.map((blog:any, index) => (

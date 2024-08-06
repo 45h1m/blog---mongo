@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <header className="sticky top-0 backdrop-blur-lg z-20 bg-white/80 dark:bg-slate-950/60 shadow-sm">
-            <div className="px-2 left flex items-center gap-4 sm:container h-20 sm:h-24 justify-between">
+            <div className="px-3 left flex items-center gap-4 sm:container h-20 sm:h-24 justify-between">
                 <div className="flex items-center">
                     <Link href="/">
                         <div className="flex gap-2">

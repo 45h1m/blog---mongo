@@ -27,7 +27,7 @@ interface postCardProps {
 
 const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags }: postCardProps) => {
     return (
-        <div className="max-w-2xl bg-slate-50 dark:bg-slate-900 sm:dark:bg-slate-800 rounded-lg border-2 shadow-sm overflow-hidden">
+        <div className="max-w-2xl bg-slate-50 dark:bg-slate-950/50 sm:dark:bg-slate-900 rounded-lg sm:border shadow-sm overflow-hidden">
             <div className="p-3 flex justify-between items-center">
                 <div className="left flex gap-3 items-center">
                     <Avatar>
