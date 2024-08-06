@@ -1,4 +1,4 @@
-import { EllipsisVertical, MoveUpRight } from "lucide-react";
+import { ArrowsUpFromLine, EllipsisVertical, MoveUpRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
@@ -13,10 +13,12 @@ type CommentCardProps = {
     comment: string;
     ondelete?: Function;
     onreport?: Function;
-    pro?:Boolean
+    onpublish?: Function;
+    pro?:Boolean,
+    published: Boolean
 };
 
-const CommentCard = ({ _id, author, authorDP, date, authenticated, owner, comment, ondelete, onreport, pro }: CommentCardProps) => {
+const CommentCard = ({ _id, author, authorDP, date, authenticated, owner, comment, ondelete, onreport, pro, published, onpublish = () => {} }: CommentCardProps) => {
     return (
         <article>
             <div className="profile flex justify-start gap-2">
@@ -54,6 +56,7 @@ const CommentCard = ({ _id, author, authorDP, date, authenticated, owner, commen
                         <p className="">{comment || "Wondering how a comment can be empty 🤔"}</p>
                     </div>
                 </div>
+            {!published && (<button onClick={() => onpublish?.(_id)}><ArrowsUpFromLine /></button>)}
             </div>
         </article>
     );

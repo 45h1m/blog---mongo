@@ -18,6 +18,31 @@ const CommentSection = ({ blogID }: any) => {
     const [textValue, settextValue] = useState("");
     const { toast } = useToast();
 
+    async function publishComment(commentID:string) {
+        try {
+            const response = await axios.post("/api/publishcomment", { blogID, commentID });
+            console.log(response.data);
+            if (response.data.error) {
+                toast({
+                    title: "Can't publish comment.",
+                    description: response.data.error,
+                });
+            } else {
+                toast({
+                    title: response.data.data,
+                    description: "Your comment was published.",
+                });
+                getComments(blogID);
+            }
+        } catch (error:any) {
+            toast({
+                title: "Something went wrong.",
+                description: "Can't publish comment.",
+            });
+            console.error("Error publishing comment: ", error);
+        }
+    }
+
     async function postCommentRequest() {
         const content = textValue;
 
@@ -173,7 +198,8 @@ const CommentSection = ({ blogID }: any) => {
                                     }
                                     comment={c.content}
                                     ondelete={deleteComment}
-                                    
+                                    published={c.published}
+                                    onpublish={publishComment}
                                 />
                             </li>
                         ))

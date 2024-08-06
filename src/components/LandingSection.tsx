@@ -29,11 +29,11 @@ const LandingSection = () => {
     return (
         <div className="relative gallery-container w-full h-[85vh] flex flex-col">
             
-            <div className="text-center pt-10  p-4 flex flex-col justify-end">
-                <h1 className="text-6xl font-bold slide-up-d1 opacity-0">
+            <div className="text-center pt-16  p-4 flex flex-col justify-end">
+                <h1 className="text-6xl font-bold slide-up opacity-0">
                     We build
                 </h1>
-                <h1 className="text-xl slide-up opacity-0">
+                <h1 className="text-xl slide-up-d1 opacity-0">
                     From <span className="text-2xl font-bold text-red-600">scratch</span><span className="text-red-600 text-2xl">.</span>
                 </h1>
             </div>

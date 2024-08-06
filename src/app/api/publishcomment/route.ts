@@ -3,7 +3,7 @@ import { BlogModel } from "@/schemas/Schema";
 import rateLimited from "@/rateLimiter";
 import { revalidatePath } from "next/cache";
 import { NextApiResponse } from "next";
-import { deleteComment } from "@/_actions/blogActions";
+import { publishComment } from "@/_actions/blogActions";
 
 export async function POST(req:NextRequest, response:NextApiResponse) {
 
@@ -39,7 +39,7 @@ export async function POST(req:NextRequest, response:NextApiResponse) {
     
             // const res = await BlogModel.updateOne({_id: body.blogID}, { $pull: { comments: { _id: body.commentID } } });
             // const res = await BlogModel.updateOne({"comments._id": body.commentID}, {published: false}, {upsert: true});
-            const res = await deleteComment({
+            const res = await publishComment({
                 blogID: body.blogID,
                 commentID: body.commentID,
             });
@@ -47,16 +47,16 @@ export async function POST(req:NextRequest, response:NextApiResponse) {
 
     
             if ( res ) {
-                return NextResponse.json({data: "Comment deleted."});
+                return NextResponse.json({data: "Comment published."});
             }
     
-            return NextResponse.json({error: "Failed to delete comment."});
+            return NextResponse.json({error: "Failed to publish comment."});
         }
         
-        return NextResponse.json({error: "Unauthorized !! to delete comment."});
+        return NextResponse.json({error: "Unauthorized !! to publish comment."});
         
     } catch (error) {
         console.log("Error deleting comment: "+ error);
-        return NextResponse.json({error: "Failed to delete comment."});
+        return NextResponse.json({error: "Failed to publish comment."});
     }
 }

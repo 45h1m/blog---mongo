@@ -63,7 +63,7 @@ export async function postComment({ name, email, dp, content }: Comment, blogID:
         if (updatedBlog) console.log("Comment posted: ");
 
         if (updatedBlog) {
-            revalidatePath("/api/getcomments/"+ blogID);
+            revalidatePath("/api/getcomments/" + blogID);
             return updatedBlog;
         } else {
             return null;
@@ -98,6 +98,7 @@ export async function publishBlog(id: string, slug: string) {
     if (res) {
         revalidatePath("/blog");
         revalidatePath("/blog/[slug]", "page");
+        revalidatePath("/api/allblogs");
         return res;
     }
 
@@ -116,6 +117,57 @@ export async function deleteBlog(id: string, slug: string) {
     }
     return null;
 }
+
+export const deleteComment = async ({ blogID, commentID }: any) => {
+    await connectDB();
+
+    try {
+        // const res = await BlogModel.findOne({_id: blogID, "comments._id": commentID}, { $set: { "comments.$setField": {published: false} } });
+        const res = await BlogModel.updateOne(
+            { _id: blogID },
+            {
+                $set: {
+                    "comments.$[comment].published": false,
+                },
+            },
+            {
+                upsert: true,
+                arrayFilters: [{ "comment._id": commentID }],
+            }
+        );
+
+        if (!res) return null;
+
+        return res;
+    } catch (error) {
+        console.log("Error deleting comment: " + error);
+    }
+};
+export const publishComment = async ({ blogID, commentID }: any) => {
+    await connectDB();
+
+    try {
+        // const res = await BlogModel.findOne({_id: blogID, "comments._id": commentID}, { $set: { "comments.$setField": {published: false} } });
+        const res = await BlogModel.updateOne(
+            { _id: blogID },
+            {
+                $set: {
+                    "comments.$[comment].published": true,
+                },
+            },
+            {
+                upsert: true,
+                arrayFilters: [{ "comment._id": commentID }],
+            }
+        );
+
+        if (!res) return null;
+
+        return res;
+    } catch (error) {
+        console.log("Error publishing comment: " + error);
+    }
+};
 
 // export async function addCommentsField() {
 //     try {

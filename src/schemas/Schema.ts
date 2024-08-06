@@ -38,6 +38,7 @@ const commentSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
     content: { type: String, required: true, maxlength: 200 },
     dp: { type: String, required: true, maxlength: 30 },
+    published: { type: Boolean, default: true },
 });
 
 const blogSchema = new Schema({
