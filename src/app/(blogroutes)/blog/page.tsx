@@ -8,7 +8,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 
     return {
         title: "Blogs",
-        description: "Tech blogs & projects",
+        description: "Explore Tech Blogs & Projects",
         openGraph: {
             images: [{ url: '/flamer-og.webp'}],
         },

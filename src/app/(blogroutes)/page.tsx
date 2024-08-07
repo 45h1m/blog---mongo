@@ -9,8 +9,8 @@ import LandingSection from "@/components/LandingSection";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     return {
-        title: "FireBit",
-        description: "Tech blogs & projects",
+        title: "Firebit",
+        description: "Tech Blogs & Projects",
         openGraph: {
             images: [{ url: "/flamer-og.webp" }],
         },

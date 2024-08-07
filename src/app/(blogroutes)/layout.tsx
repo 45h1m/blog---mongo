@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: {
         default: "FireBit - Tech Blogs & Projects",
-        template: "%s | FireBit",
+        template: "%s | Firebit",
     },
     description: "Explore tech blogs and innovative projects showcasing the latest in technology and development.",
 };
