@@ -304,11 +304,15 @@ Insert any [Link](https://63b935305c329268d5a8cd41--ashimdas.netlify.app)
                                 className="bg-white dark:bg-slate-900 px-3 py-2 rounded-md border-2 text-sm max-h-52"
                                 value={contentValue}
                                 onChange={(e) => setContentValue(e.target.value)}
-                                onContextMenu={(e) => {
-                                    e.preventDefault();
-                                    setImgDrawerOpen(true);
-                                }}
                             />
+                            {editSectionOpen && (
+                                <button
+                                    className="text-sm text-slate-50 font-semibold border px-2 py-1 rounded-md bg-violet-600 w-fit"
+                                    onClick={() => setImgDrawerOpen(true)}
+                                >
+                                    Select Images
+                                </button>
+                            )}
                             <div className="flex justify-between items-center">
                                 {editSectionOpen ? (
                                     <label className="text-sm text-slate-600 dark:text-slate-300">Preview</label>
@@ -326,7 +330,9 @@ Insert any [Link](https://63b935305c329268d5a8cd41--ashimdas.netlify.app)
                                 <DrawerContent>
                                     <DrawerHeader>
                                         <DrawerDescription>
-                                            {selectedImages.length > 0 ? "Select image to insert into blog" : "First select images"}
+                                            {selectedImages.length > 0
+                                                ? "Select image to insert into blog"
+                                                : 'First select images in "Add Images" section'}
                                         </DrawerDescription>
                                     </DrawerHeader>
 
