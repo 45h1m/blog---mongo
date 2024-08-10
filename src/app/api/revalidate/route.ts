@@ -24,9 +24,11 @@ export async function POST(req: NextRequest, res:NextApiResponse) {
 
             const {blogs} = await getBlogs();
             blogs?.forEach(blog => revalidatePath("/blog/"+ blog.slug));
+            revalidatePath("/blog");
             return NextResponse.json({ success: "Revalidated : /blog/[slug]"});
         }
-
+        
+        revalidatePath("/blog");
         revalidatePath(path);
 
         return NextResponse.json({ success: "Revalidated : " + path});

@@ -48,7 +48,7 @@ const Footer = () => {
                     <div className="mb-8 lg:mb-0">
                         <p className="mb-6 text-lg font-semibold text-slate-700 dark:text-slate-400">FireBit</p>
                         <ul className="flex flex-col space-y-4 text-[14px] font-medium text-slate-600 dark:text-slate-500">
-                            <li>hello@flamer.com</li>
+                            <li>hello@firebit.in</li>
                             <li>+91 1234567890</li>
                             <li>Facebook</li>
                             <li>Github</li>
