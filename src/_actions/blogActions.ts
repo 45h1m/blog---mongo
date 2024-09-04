@@ -17,6 +17,29 @@ export async function getBlogs() {
         return { error: error };
     }
 }
+export async function getBlogBySlug({slug}:any) {
+    try {
+        await connectDB();
+
+        const blog = await BlogModel.findOne({slug});
+
+        return { blog };
+    } catch (error) {
+        return { error: error };
+    }
+}
+
+export async function incrementViews(slug:string) {
+    try {
+        await connectDB();
+
+        const blog = await BlogModel.updateOne({slug}, { $inc: { views: 1 } });
+
+        return { blog };
+    } catch (error) {
+        return { error: error };
+    }
+}
 
 export async function postBlog({ title, description, content, author, authorDP, tags, thumbnail, slug, published }: BlogPost) {
     return new Promise(async (resolve, reject) => {
@@ -181,6 +204,7 @@ export const publishComment = async ({ blogID, commentID }: any) => {
 //         console.error('Error updating blogs:', error);
 //     }
 // }
+
 // export async function postAllBlogs() {
 
 //     await connectDB();

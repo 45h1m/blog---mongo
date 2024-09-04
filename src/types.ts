@@ -7,7 +7,7 @@ export type BlogPost = {
     authorDP: string;
     tags: Array<string>;
     slug: string;
-    published?: boolean
+    published?: boolean,
 };
 
 export type Comment = {

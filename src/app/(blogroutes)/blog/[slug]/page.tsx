@@ -11,6 +11,8 @@ import { isoToIST } from "@/lib/utils";
 import Share from "@/components/Share";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import ReadAloud from "@/components/ReadAloud";
+import Logger from "@/components/Logger";
+import TotalViews from "@/components/TotalViews";
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const slugInURL = props.params.slug;
@@ -85,13 +87,14 @@ const page = async (props: any) => {
                             <dl>
                                 <dt className="hidden">Published on</dt>
                                 <dd>
-                                    <p className="text-sm text-slate-500">{isoToIST(blog.createdAt)}</p>
+                                    <p className="text-sm text-slate-500">{isoToIST(blog.createdAt)}  <TotalViews slug ={blog.slug}/></p>
+                        
                                 </dd>
                             </dl>
                         </div>
                     </div>
 
-                    <div className="right grid">
+                    <div className="right flex gap-4">
                         <DropdownMenu>
                             <DropdownMenuTrigger aria-label="option-menu">
                                 <EllipsisVertical />
@@ -137,6 +140,8 @@ const page = async (props: any) => {
                     </div>
                 </>
             }
+
+            <Logger/>
 
             <hr className="md:hidden my-5" />
         </>

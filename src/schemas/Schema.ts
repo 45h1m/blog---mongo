@@ -102,6 +102,10 @@ const blogSchema = new Schema({
         maxlength: 100,
     },
     comments: [commentSchema],
+    views: {
+        type: Number,
+        default: 0,
+    }
 });
 
 blogSchema.pre("save", function (next) {
