@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const incrementCount = async (url:string) => {
     
-    const blogUrlPattern = /^http:\/\/[^\/]+\/blog\/[a-zA-Z0-9-]+$/;
+    const blogUrlPattern = /^https:\/\/[^\/]+\/blog\/[a-zA-Z0-9-]+$/;
 
     if(blogUrlPattern.test(url)) {
         const slug = url.split("/blog/")[1];
