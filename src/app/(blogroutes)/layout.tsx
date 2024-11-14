@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: {
-        default: "FireBit - Tech Blogs & Projects",
+        default: "FIREBIT - Tech Blogs & Projects",
         template: "%s | Firebit",
     },
     description: "Explore tech blogs and innovative projects showcasing the latest in technology and development.",
@@ -27,8 +27,8 @@ export default function RootLayout({
             <head>
                 <meta name="google-site-verification" content="Ge7fomK8okwU6ayD7aETWSjWAnWCxkZrX7vou_soiCE" />
                 <Script
-                id="gtm"
-                strategy="afterInteractive"
+                    id="gtm"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
