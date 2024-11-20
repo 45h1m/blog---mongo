@@ -39,8 +39,9 @@ export async function POST(req: NextRequest) {
             res.cookies.set("visited-urls", pageURL, {
                 httpOnly: true,
                 sameSite: "strict",
+                maxAge: 60 * 60 * 24,   // after 24 hours another views will be counted from same browser
             });
-
+            
             incrementCount(pageURL);
             return res;
         }
@@ -53,6 +54,7 @@ export async function POST(req: NextRequest) {
             res.cookies.set("visited-urls", cookie.value + pageURL, {
                 httpOnly: true,
                 sameSite: "strict",
+                maxAge: 60 * 60 * 24,   // after 24 hours another views will be counted from same browser
             });
 
             incrementCount(pageURL);

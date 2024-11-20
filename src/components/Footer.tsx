@@ -1,6 +1,7 @@
 "use client";
 import { Flame } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
 const Footer = () => {
     const { toast } = useToast();
@@ -58,11 +59,13 @@ const Footer = () => {
                     <div className="mb-8 lg:mb-0">
                         <p className="mb-6 text-lg font-semibold text-slate-700 dark:text-slate-400">Developer</p>
                         <ul className="flex flex-col space-y-4 text-[14px] font-medium text-slate-600 dark:text-slate-500">
-                            <li>github/45h1m</li>
-                            <li>Company History</li>
-                            <li>Our Team</li>
-                            <li>Our Vision</li>
-                            <li>Press Release</li>
+                            <li><Link href="https://github.com/45h1m">github/45h1m</Link></li>
+                            <li><Link href="mailto:ady.ashim@gmail.com">ady.ashim@gmail.com</Link></li>
+                            <li><Link href="https://linkedin.com/in/icanprinthelloworld">LinkedIn</Link></li>
+                            <li><Link href="https://ashimdas.netlify.app">Portfolio</Link></li>
+                            <li><Link href="https://instagram.com/i_can_print_hello_world">Instagram</Link></li>
+                            <li><Link href="https://www.facebook.com/ady.ashim">Facebook</Link></li>
+                            <li><Link href="https://youtube.com/adymaza">YouTube</Link></li>
                         </ul>
                     </div>
                     <div className="mb-8 lg:mb-0">

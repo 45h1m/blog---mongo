@@ -40,7 +40,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                         <dl>
                             <dt className="hidden">Published on</dt>
                             <dd>
-                                <p className="text-sm text-slate-500">{date}</p>
+                                <p className="text-xs text-slate-500">{date}</p>
                             </dd>
                         </dl>
                     </div>
@@ -69,7 +69,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                         read more
                     </Link>
                 </div>
-                <div className="lg:pr-4 lg:pb-4 rounded-lg overflow-hidden">
+                <div className="lg:pr-4 lg:pb-4 rounded-lg overflow-hidden group ">
                     <Link href={"blog/" + slug} className=" w-full h-full flex relative items-end">
                         <Image
                             width={400}
@@ -78,9 +78,9 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                             alt="post-thumbnail"
                             className="object-cover w-full h-full lg:max-h-full rounded-lg aspect-video"
                         />
-                        <div className="absolute flex flex-wrap-reverse gap-2 bg-gradient-to-t rounded-lg dark:from-slate-500/20 from-black/20 to-transparent p-2">
+                        <div className="opacity-0 group-hover:opacity-100 transition absolute flex flex-wrap-reverse gap-1 bg-gradient-to-t rounded-lg dark:from-slate-500/20 from-black/20 to-transparent p-1 items-end justify-start w-full">
                             {tags.map((tag, index) => (
-                                <span key={index} className="text-sm bg-white/90 dark:bg-black/60 text-black dark:text-slate-100 px-2 rounded-sm">
+                                <span key={index} className="text-xs bg-white/90 dark:bg-black/60 text-black dark:text-slate-100 px-2 rounded-sm">
                                     {tag}
                                 </span>
                             ))}
