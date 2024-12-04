@@ -25,13 +25,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     td: ({ children }) => <td className='border-2 p-2'>{children}</td>,
     tr: ({ children }) => <tr className=''>{children}</tr>,
     // code: ({ children }) => <CopyToClip children={children}/>,
-    img: (props) => (
-      <Image
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
-        {...(props as ImageProps)}
-      />
-    ),
+    // img: (props) => (
+    //   <Image
+    //     sizes="100vw"
+    //     style={{ width: '100%', height: 'auto' }}
+    //     className='w-full opacity-0'
+    //     {...(props as ImageProps)}
+    //   />
+    // ),
     
   }
 }

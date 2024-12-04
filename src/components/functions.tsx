@@ -29,7 +29,7 @@ export async function compileContent(md:string) {
     tr: ({ children }) => <tr className=''>{children}</tr>,
     pre: ({ children }) => <CopyToClip >{children}</CopyToClip>,
     code: ({ children }) => <code className='bg-slate-200 dark:bg-slate-800 rounded-sm px-2'>{ children }</code>,
-    img: ({ children, src, alt }) => <img src={src} alt={alt} className='w-full max-h-96 object-contain'>{ children }</img>,
+    img: ({ children, src, alt }) => <img src={src} alt={alt} className='w-full max-h-[90vh] object-contain border my-2 rounded-sm'>{ children }</img>,
     }
   });
 
