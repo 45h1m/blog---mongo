@@ -21,6 +21,8 @@ const page = async () => {
 
     const publishedBlogs = blogs?.filter(blog => blog.published);
 
+    publishedBlogs?.sort((a, b) => b.views - a.views);
+
     return (
         <div className="flex flex-col gap-3 md:pl-0 pb-10">
             {
