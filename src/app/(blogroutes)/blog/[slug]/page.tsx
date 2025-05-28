@@ -87,7 +87,7 @@ const page = async (props: any) => {
                             <dl>
                                 <dt className="hidden">Published on</dt>
                                 <dd>
-                                    <p className="text-sm text-slate-500">{isoToIST(blog.createdAt)}  <TotalViews slug ={blog.slug}/></p>
+                                    <p className="text-xs text-slate-500">{isoToIST(blog.createdAt)}  <TotalViews slug ={blog.slug}/></p>
                         
                                 </dd>
                             </dl>
