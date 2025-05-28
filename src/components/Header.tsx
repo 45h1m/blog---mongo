@@ -8,6 +8,7 @@ import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { usePathname } from "next/navigation";
+import SigninButton from "./SigninButton";
 
 const Header = () => {
     const [dark, setDark] = useState(false);
@@ -118,14 +119,7 @@ const Header = () => {
                     )}
 
                     {session.status === "unauthenticated" && (
-                        <button
-                            className="bg-red-600 text-white px-4 font-semibold hover:bg-red-500 py-2 rounded-lg shadow-sm text-nowrap"
-                            title="Sign in to post comment"
-                            aria-label="sign in"
-                            onClick={() => signIn("google")}
-                        >
-                            Sign In
-                        </button>
+                        <SigninButton />
                     )}
                 </div>
             </div>

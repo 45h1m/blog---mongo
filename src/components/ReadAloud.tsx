@@ -1,7 +1,7 @@
 "use client";
 
 import { LoaderCircle, Pause, Sparkles, Speech } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useToast } from "./ui/use-toast";
 
 const ReadAloud = ({ onclick, children }: any) => {
@@ -10,9 +10,20 @@ const ReadAloud = ({ onclick, children }: any) => {
     const [reading, setReading] = useState(false);
     let [donePreparing, setDonePreparing] = useState(false);
 
+    let synth:any = null;
+
+    useEffect(() => {
+        return () => {
+            if(synth) {
+                synth.cancel();
+                setReading(false);
+            }
+        }
+    }, []);
     
     const handleSpeech = () => {
-        const synth = window.speechSynthesis;
+        if(!synth)
+        synth = window.speechSynthesis;
         
         const container = document.querySelector("#blog-contents");
         if(!donePreparing) prepareHTML(container);
@@ -32,7 +43,6 @@ const ReadAloud = ({ onclick, children }: any) => {
 
     const prepareHTML = (container:any) => {
 
-        const nodes = container?.childNodes;
         replaceTextWithSpan(container);
     };
 

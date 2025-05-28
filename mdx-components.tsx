@@ -1,38 +1,105 @@
-import CopyToClip from '@/components/CopyToClip'
-import type { MDXComponents } from 'mdx/types'
-import Image, { ImageProps } from 'next/image'
- 
- 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return {
-    ...components,
-    // Allows customizing built-in components, e.g. to add styling.
-    h1: ({ children }) => <h1 className='text-3xl font-bold relative'>{children}</h1>,
-    h2: ({ children }) => <h2 className='text-2xl font-bold '>{children}</h2>,
-    h3: ({ children }) => <h3 className='text-xl font-bold border-l-4 pl-4 '>{children}</h3>,
-    h4: ({ children }) => <h4 className='text-lg font-bold '>{children}</h4>,
-    h5: ({ children }) => <h5 className='text-md font-bold '>{children}</h5>,
-    h6: ({ children }) => <h6 className='text-md font-bold '>{children}</h6>,
-    p: ({ children }) => <p className='text-md font-normal'>{children}</p>,
-    hr: ({ children }) => <hr className='py-3 mt-6'>{children}</hr>,
+import CopyToClip from "@/components/CopyToClip";
+import type { MDXComponents } from "mdx/types";
+import React from "react";
 
-    blockquote: ({ children }) => <blockquote className='text-yellow-100 border-l-4 border-yellow-600 px-4 py-3 bg-yellow-950 max-w-lg'>{children}</blockquote>,
-    ul: ({ children }) => <ul className='list-disc pl-8 text-slate-700 dark:text-slate-200 border-l-4'>{children}</ul>,
-    ol: ({ children }) => <ol className='list-disc pl-8 text-slate-700 dark:text-slate-200 border-l-4'>{children}</ol>,
-    li: ({ children }) => <li className='py-0'>{children}</li>,
-    table: ({ children }) => <div className='w-full overflow-x-auto'><table className='table-auto'>{children}</table></div>,
-    th: ({ children }) => <th className='border-2 bg-slate-200 dark:bg-slate-800'>{children}</th>,
-    td: ({ children }) => <td className='border-2 p-2'>{children}</td>,
-    tr: ({ children }) => <tr className=''>{children}</tr>,
-    // code: ({ children }) => <CopyToClip children={children}/>,
-    // img: (props) => (
-    //   <Image
-    //     sizes="100vw"
-    //     style={{ width: '100%', height: 'auto' }}
-    //     className='w-full opacity-0'
-    //     {...(props as ImageProps)}
-    //   />
-    // ),
-    
-  }
-}
+export const customMDXComponents: MDXComponents = {
+    h1: ({ children, ...props }) => (
+        <h1 className="text-3xl font-bold relative" {...props}>
+            {children}
+        </h1>
+    ),
+    h2: ({ children, ...props }) => (
+        <h2 className="text-2xl font-bold" {...props}>
+            {children}
+        </h2>
+    ),
+    h3: ({ children, ...props }) => (
+        <h3 className="text-xl font-bold border-l-4 pl-2" {...props}>
+            {children}
+        </h3>
+    ),
+    h4: ({ children, ...props }) => (
+        <h4 className="text-lg font-bold" {...props}>
+            {children}
+        </h4>
+    ),
+    h5: ({ children, ...props }) => (
+        <h5 className="text-md font-bold" {...props}>
+            {children}
+        </h5>
+    ),
+    h6: ({ children, ...props }) => (
+        <h6 className="text-md font-bold" {...props}>
+            {children}
+        </h6>
+    ),
+
+    p: ({ children, ...props }) => (
+        <p className="text-md font-normal text-slate-700 dark:text-slate-300" {...props}>
+            {children}
+        </p>
+    ),
+
+    hr: (props) => <hr className="py-3 mt-6" {...props} />,
+
+    blockquote: ({ children, ...props }) => (
+        <blockquote className="border-yellow-400 px-3 py-2 border-l-4 bg-yellow-200/50 dark:bg-yellow-900/50" {...props}>
+            {children}
+        </blockquote>
+    ),
+
+    ul: ({ children, ...props }) => (
+        <ul className="list-disc pl-8 text-slate-800 dark:text-slate-200 border-l-4" {...props}>
+            {children}
+        </ul>
+    ),
+    ol: ({ children, ...props }) => (
+        <ol className="list-decimal pl-8 text-slate-800 dark:text-slate-200 border-l-4" {...props}>
+            {children}
+        </ol>
+    ),
+    li: ({ children, ...props }) => (
+        <li className="py-0" {...props}>
+            {children}
+        </li>
+    ),
+
+    table: ({ children, ...props }) => (
+        <div className="w-full overflow-x-auto" {...props}>
+            <table className="table-auto">{children}</table>
+        </div>
+    ),
+    th: ({ children, ...props }) => (
+        <th className="border-2 bg-slate-200 dark:bg-slate-800" {...props}>
+            {children}
+        </th>
+    ),
+    td: ({ children, ...props }) => (
+        <td className="border-2 p-2" {...props}>
+            {children}
+        </td>
+    ),
+    tr: ({ children, ...props }) => <tr {...props}>{children}</tr>,
+
+    pre: ({ children, ...props }) => <CopyToClip {...props}>{children}</CopyToClip>,
+
+    code: ({ children, ...props }) => (
+        <code className="bg-slate-200 dark:bg-slate-800 rounded-sm px-2" {...props}>
+            {children}
+        </code>
+    ),
+
+    img: ({ src, alt, ...props }) => <img src={src} alt={alt} className="w-full max-h-[90vh] object-contain border my-2 rounded-sm" {...props} />,
+
+    a: ({ children, href, ...props }) => (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
+            {...props}
+        >
+            {children}
+        </a>
+    ),
+};
